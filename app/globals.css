@@ -3,24 +3,46 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #ed2224;
+  --blue: #005696;
+  --blue-dark: #132436;
+  --blue-light: #97b4de;
 }
 
+/* For Tailwind CSS to recognize the custom properties, we need to define them in a theme block. This allows us to use these variables throughout our Tailwind CSS classes. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-blue: var(--blue);
+  --color-blue-dark: var(--blue-dark);
+  --color-blue-light: var(--blue-light);
+  --font-sans: var(--font-montserrat);
+  --font-serif: var(--font-playfair-display);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+.container {
+  @apply px-4 sm:mx-auto sm:max-w-5xl md:max-w-7xl;
+  /* Working on all screen sizes  */
+}
+
+.nav-link {
+  @apply rounded-md px-3 py-2 text-sm tracking-wider text-neutral-300 uppercase transition-colors duration-200 hover:text-white;
+}
+
+h1 {
+  @apply font-serif leading-16;
 }
