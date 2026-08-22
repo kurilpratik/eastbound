@@ -8,6 +8,7 @@ type PortalLoginProps = {
   title: string;
   description: string;
   supportCopy: string;
+  imageUrl?: string;
   imagePosition?: string;
 };
 
@@ -16,12 +17,13 @@ const PortalLogin = ({
   title,
   description,
   supportCopy,
+  imageUrl = "/images/events/events-bg.jpg",
   imagePosition = "center",
 }: PortalLoginProps) => {
   return (
     <main className="bg-blue-dark relative isolate flex min-h-screen items-end overflow-hidden text-white sm:items-center">
       <Image
-        src="/images/events/events-bg.jpg"
+        src={imageUrl}
         alt="Eastbound travel landscape"
         fill
         priority
@@ -29,8 +31,8 @@ const PortalLogin = ({
         className="-z-20 object-cover"
         style={{ objectPosition: imagePosition }}
       />
-      {/* <div className="absolute inset-0 -z-10 bg-[#0d2031]/70" />
-      <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#0d2031]/90 via-[#0d2031]/30 to-[#0d2031]/55" /> */}
+      {/* <div className="absolute inset-0 -z-10 bg-[#0d2031]/70" /> */}
+      <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#0d2031]/90 via-[#0d2031]/30 to-[#0d2031]/55" />
 
       <header className="absolute inset-x-0 top-0">
         <div className="container flex items-center justify-between py-5 sm:py-7">
@@ -54,7 +56,7 @@ const PortalLogin = ({
       </header>
 
       <div className="container w-full py-8 sm:py-16 lg:py-20">
-        <div className="grid max-w-5xl gap-10 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-20">
+        <div className="grid gap-10 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-20">
           <div className="max-w-xl">
             <p className="text-primary text-[10px] font-medium tracking-[0.4em] uppercase sm:text-xs">
               {eyebrow}
@@ -69,7 +71,7 @@ const PortalLogin = ({
 
           <form
             onSubmit={(event) => event.preventDefault()}
-            className="border border-white/20 bg-[#132436]/70 p-6 backdrop-blur-sm sm:p-8"
+            className="bg-blue-dark/80 border border-white/20 p-6 backdrop-blur-sm sm:p-8"
           >
             <div className="space-y-5">
               <div>

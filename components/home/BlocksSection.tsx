@@ -35,7 +35,7 @@ const BlocksSection = () => {
   return (
     <section className="bg-[#f7f5f0] py-20 sm:py-24 lg:py-28">
       <div className="container">
-        <div className="mb-8 sm:mb-10 lg:mb-12">
+        {/* <div className="mb-8 sm:mb-10 lg:mb-12">
           <p className="text-primary text-[10px] font-medium tracking-[0.42em] uppercase sm:text-xs">
             Signature journeys
           </p>
@@ -45,13 +45,13 @@ const BlocksSection = () => {
               made personal.
             </span>
           </h2>
-        </div>
+        </div> */}
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid md:grid-cols-2 xl:grid-cols-2">
           {blocks.map((block) => (
             <article
               key={block.title}
-              className="group relative h-[360px] overflow-hidden sm:h-[420px] xl:h-[480px]"
+              className="group relative h-72 overflow-hidden sm:h-84"
             >
               <Image
                 src={block.image}
@@ -60,15 +60,25 @@ const BlocksSection = () => {
                 sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#132436]/90 via-[#132436]/15 to-transparent" />
-              {/* <div className="to-bg-blue absolute inset-0 bg-linear-to-b from-black/80" /> */}
+              <div className="from-blue-dark/80 absolute inset-0 bg-gradient-to-t via-black/40 to-transparent" />
 
               <div className="absolute inset-x-0 bottom-0 flex p-4 sm:p-5">
-                <div className="pointer-events-none translate-y-4 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="w-full text-white">
+                  <h3 className="my-2 font-serif text-xl transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+                    {block.title}
+                  </h3>
+                  <p className="max-h-0 w-4/5 translate-y-2 overflow-hidden text-xs leading-5 text-white/90 opacity-0 transition-all duration-300 ease-in group-hover:max-h-40 group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-95">
+                    {block.description}
+                  </p>
+                </div>
+                {/* <h3 className="] absolute bottom-12 left-4 mt-2 w-full font-serif text-xl leading-none tracking-[-0.04em] text-white">
+                  {block.title}
+                </h3>
+                <p className="absolute bottom-12 left-1/2 w-full translate-[-50%] text-center text-xs text-white opacity-0 transition-all duration-500 ease-out group-hover:bottom-12 group-hover:opacity-100 sm:text-sm">
+                  {block.description}
+                </p> */}
+                {/* <div className="pointer-events-none translate-y-4 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
                   <div className="bg-gradient-to-b from-black/70 via-black/50 to-transparent px-4 py-3 backdrop-blur-[1px] sm:px-5 sm:py-4">
-                    {/* <p className="text-[10px] font-medium tracking-[0.32em] text-white/75 uppercase">
-                      Explore
-                    </p> */}
                     <h3 className="mt-2 font-serif text-2xl leading-none tracking-[-0.04em] text-white sm:text-3xl">
                       {block.title}
                     </h3>
@@ -76,7 +86,7 @@ const BlocksSection = () => {
                       {block.description}
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </article>
           ))}

@@ -1,7 +1,7 @@
 export const navData = [
   {
     title: "Destinations",
-    href: "/",
+    href: "/destinations",
   },
   {
     title: "Experiences",
@@ -13,6 +13,10 @@ export const navData = [
   },
   {
     title: "Newsletters",
+    href: "/",
+  },
+  {
+    title: "Contact",
     href: "/",
   },
 ];

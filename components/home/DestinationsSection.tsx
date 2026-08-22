@@ -1,61 +1,60 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const destinations = [
   {
     name: "India",
+    slug: "india",
     label: "01",
     region: "The Subcontinent",
     description:
       "From Rajasthan’s palace forts to Kerala’s lush backwaters, India reveals a different world at every turn.",
-    image:
-      "https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1400&q=85",
-    href: "https://www.google.com/maps/search/?api=1&query=India",
+    image: "/images/destinations/india.jpg",
   },
   {
     name: "Bhutan",
+    slug: "bhutan",
     label: "02",
     region: "The Himalayas",
     description: "A kingdom that measures wealth in happiness.",
-    image:
-      "https://images.unsplash.com/photo-1571416764771-8f48c4d81b82?auto=format&fit=crop&w=1400&q=85",
-    href: "https://www.google.com/maps/search/?api=1&query=Bhutan",
+    image: "/images/destinations/bhutan.jpg",
   },
   {
     name: "Nepal",
+    slug: "nepal",
     label: "03",
     region: "The Himalayas",
     description:
       "Ancient temples, mountain trails and warm hospitality beneath the world’s highest peaks.",
     image:
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1400&q=85",
-    href: "https://www.google.com/maps/search/?api=1&query=Nepal",
   },
   {
     name: "Sri Lanka",
+    slug: "srilanka",
     label: "04",
     region: "The Indian Ocean",
     description:
       "Tea gardens, timeless temples and golden coastlines make every island journey feel distinct.",
-    image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1400&q=85",
-    href: "https://www.google.com/maps/search/?api=1&query=Sri+Lanka",
+    image: "/images/destinations/srilanka.jpg",
   },
   {
     name: "UAE",
+    slug: "uae",
     label: "05",
     region: "The Gulf",
     description:
       "Desert horizons, design-forward cities and deeply rooted Arabian hospitality.",
     image:
       "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1400&q=85",
-    href: "https://www.google.com/maps/search/?api=1&query=United+Arab+Emirates",
   },
 ];
 
 const DestinationsSection = () => {
+  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(1);
 
   return (
@@ -68,7 +67,7 @@ const DestinationsSection = () => {
             </p>
             <h2 className="text-blue-dark mt-6 font-serif text-[2.7rem] leading-[0.94] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
               Five countries.
-              <span className="text-primary mt-2 block italic">
+              <span className="text-primary mt-2 block">
                 A thousand doorways.
               </span>
             </h2>
@@ -145,9 +144,12 @@ const DestinationsSection = () => {
                   type="button"
                   onMouseEnter={() => setActiveIndex(index)}
                   onFocus={() => setActiveIndex(index)}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => {
+                    setActiveIndex(index);
+                    router.push(`/destinations/${destination.slug}`);
+                  }}
                   aria-pressed={isActive}
-                  className="group border-blue-dark/10 grid w-full grid-cols-[2.75rem_1fr_auto] items-center gap-2 border-b py-6 text-left last:border-b-0 sm:grid-cols-[3rem_1fr_auto] sm:py-7"
+                  className="group border-blue-dark/10 grid w-full grid-cols-[2.75rem_1fr_auto] items-center gap-2 border-b py-6 text-left last:border-b-0 hover:cursor-pointer sm:grid-cols-[3rem_1fr_auto] sm:py-7"
                 >
                   <span
                     className={`text-[10px] tracking-[0.24em] ${isActive ? "text-primary" : "text-blue-dark/55"}`}
