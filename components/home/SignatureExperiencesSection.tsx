@@ -1,6 +1,7 @@
 import { experiences } from "@/data/experiences";
 import { Reveal } from "../Reveal";
 import Image from "next/image";
+import { Button } from "../ui/Button";
 
 export function SignatureExperiencesSection() {
   return (
@@ -8,10 +9,10 @@ export function SignatureExperiencesSection() {
       <div className="container">
         <Reveal className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="eyebrow mb-4">Signature experiences</p>
-            <h2 className="text-primary max-w-2xl font-serif text-4xl leading-[1.05] md:text-6xl">
+            <p className="eyebrow mb-8">Signature experiences</p>
+            <h2 className="max-w-2xl font-serif text-4xl leading-[1.05] text-neutral-700 md:text-6xl">
               A handful of journeys we return to{" "}
-              <em className="text-accent italic">again and again.</em>
+              <span className="text-accent">again and again.</span>
             </h2>
           </div>
         </Reveal>
@@ -30,27 +31,25 @@ export function SignatureExperiencesSection() {
                   alt={e.title}
                   className="h-[420px] w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
                   loading="lazy"
-                  width={800}
-                  height={500}
+                  width={600}
+                  height={300}
                 />
               </div>
               <div className="border-border/60 border-x border-b p-7">
-                <div className="text-muted-foreground mb-4 flex items-center justify-between text-[0.68rem] tracking-[0.3em] uppercase">
-                  <span>{e.location}</span>
-                  <span>{e.duration}</span>
+                <div className="text-muted-foreground mb-4 flex items-center justify-between text-[0.68rem] font-semibold tracking-[0.3em] uppercase">
+                  <span className="text-blue-light">{e.location}</span>
+                  {/* <span>{e.duration}</span> */}
                 </div>
-                <h3 className="text-primary mb-4 font-serif text-2xl leading-tight md:text-[1.7rem]">
+                <h3 className="mb-4 font-serif text-2xl leading-tight text-neutral-700 md:text-[1.7rem]">
                   {e.title}
                 </h3>
                 <p className="text-muted-foreground mb-6 text-sm leading-relaxed font-light">
                   {e.copy}
                 </p>
-                <span className="text-primary inline-flex items-center gap-2 text-[0.7rem] tracking-[0.28em] uppercase">
-                  Discover the journey
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
+                <Button variant={"link"} size={"link"}>
+                  Discover the Journey
+                  <span className="btn-link-icon">→</span>
+                </Button>
               </div>
             </Reveal>
           ))}

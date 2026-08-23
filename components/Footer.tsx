@@ -12,10 +12,10 @@ export function Footer() {
       <div className="border-b border-white/10">
         <div className="container grid gap-14 py-20 md:py-28 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
           <Reveal>
-            <p className="eyebrow mb-4">Begin your journey</p>
+            <p className="eyebrow text-blue-light mb-8">Begin your journey</p>
             <h2 className="mb-6 font-serif text-4xl leading-[1.05] md:text-6xl">
               Tell us where your{" "}
-              <em className="text-accent italic">imagination</em> is drifting.
+              <span className="text-accent">imagination</span> is drifting.
             </h2>
             <p className="text-primary-foreground/70 mb-10 max-w-md leading-relaxed font-light">
               Send a few lines about the journey you have in mind. A senior
@@ -105,7 +105,7 @@ export function Footer() {
               </FormRow>
               <button
                 type="submit"
-                className="group bg-accent text-accent-foreground inline-flex items-center gap-3 px-8 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-transform duration-300 hover:-translate-y-0.5"
+                className="group bg-accent text-accent-foreground inline-flex items-center gap-3 px-8 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-transform duration-300 hover:-translate-y-0.5 hover:font-semibold"
               >
                 {sent ? "Thank you — we'll be in touch" : "Submit enquiry"}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -129,7 +129,7 @@ export function Footer() {
             <a
               key={n.href}
               href={n.href}
-              className="text-primary-foreground/70 hover:text-accent text-[0.7rem] tracking-[0.28em] uppercase transition-colors"
+              className="text-primary-foreground/70 hover:text-blue-light text-[0.7rem] tracking-[0.28em] uppercase transition-colors"
             >
               {n.label}
             </a>
@@ -155,7 +155,7 @@ export function Footer() {
           <span>
             © {new Date().getFullYear()} Eastbound Travel. All rights reserved.
           </span>
-          <span>Bhutan · Nepal · India · Sri Lanka · UAE</span>
+          <span>India · Bhutan · Nepal · Sri Lanka · UAE</span>
         </div>
       </div>
 

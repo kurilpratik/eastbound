@@ -48,7 +48,7 @@ const PortalLogin = ({
           </Link>
           <Link
             href="/"
-            className="hover:text-primary text-[10px] font-medium tracking-[0.22em] text-white/80 uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="hover:text-blue-light text-[10px] font-medium tracking-[0.22em] text-white/80 uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             Back to Eastbound
           </Link>
@@ -58,9 +58,7 @@ const PortalLogin = ({
       <div className="container w-full py-8 sm:py-16 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-20">
           <div className="max-w-xl">
-            <p className="text-primary text-[10px] font-medium tracking-[0.4em] uppercase sm:text-xs">
-              {eyebrow}
-            </p>
+            <p className="eyebrow text-blue-light">{eyebrow}</p>
             <h1 className="mt-5 font-serif text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
               {title}
             </h1>

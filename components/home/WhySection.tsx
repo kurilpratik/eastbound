@@ -35,18 +35,18 @@ const WhySection = () => {
 
       <div className="container">
         <Reveal className="mb-20 max-w-3xl">
-          <p className="eyebrow text-primary mb-4">Why Eastbound</p>
+          <p className="eyebrow text-blue-light mb-8 text-xs">Why Eastbound</p>
           <h2 className="font-serif text-4xl leading-[1.05] md:text-6xl">
             The difference is in the{" "}
-            <em className="text-primary italic">detail</em> — and in the people
-            who arrange it.
+            <span className="text-primary">detail</span> — and in the people who
+            arrange it.
           </h2>
         </Reveal>
 
         <div className="grid gap-x-16 gap-y-16 md:grid-cols-2">
           {reasons.map((p, i) => (
             <Reveal key={p.id} delay={i * 100} className="flex gap-8">
-              <span className="text-primary pt-1 font-serif text-3xl italic">
+              <span className="text-blue-light pt-1 font-serif text-3xl">
                 {p.id}
               </span>
               <div>

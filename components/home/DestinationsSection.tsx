@@ -62,9 +62,7 @@ const DestinationsSection = () => {
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16">
           <div>
-            <p className="text-primary text-[10px] font-medium tracking-[0.42em] uppercase sm:text-xs">
-              Where we travel
-            </p>
+            <p className="eyebrow">Where we travel</p>
             <h2 className="text-blue-dark mt-6 font-serif text-[2.7rem] leading-[0.94] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
               Five countries.
               <span className="text-primary mt-2 block">
@@ -117,7 +115,7 @@ const DestinationsSection = () => {
                   <h3 className="mt-4 font-serif text-5xl leading-none tracking-[-0.04em] sm:text-6xl">
                     {destination.name}
                   </h3>
-                  <p className="mt-4 max-w-sm text-sm leading-6 text-white/90 sm:text-base">
+                  <p className="mt-1 max-w-sm text-sm leading-6 text-white/90 sm:text-base">
                     {destination.description}
                   </p>
                   {/* <a

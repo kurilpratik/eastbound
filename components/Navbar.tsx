@@ -166,9 +166,10 @@ const Navbar = () => {
               href="/agent"
               className={`group inline-flex items-center gap-0 px-2.5 py-2 text-[9px] tracking-[0.25em] uppercase transition-all duration-300 group-hover:gap-2 hover:font-semibold sm:px-4 sm:text-[11px] ${
                 isScrolled
-                  ? "hover:text-blue-dark border bg-slate-900 text-white hover:border-0 hover:bg-white"
+                  ? "bg-slate-900 text-white"
                   : "hover:text-blue-dark border border-white/70 hover:bg-white"
               }`}
+              d
             >
               <span className="transition-transform duration-300 group-hover:translate-x-[-2px]">
                 Agent Hub
@@ -177,7 +178,11 @@ const Navbar = () => {
             </Link>
             <Link
               href="/events"
-              className="group bg-primary hover:text-blue-dark inline-flex items-center gap-0 px-2.5 py-2 text-[9px] tracking-[0.25em] uppercase transition-all duration-300 group-hover:gap-2 hover:bg-white hover:font-semibold sm:px-4 sm:text-[11px]"
+              className={`group inline-flex items-center gap-0 px-2.5 py-2 text-[9px] tracking-[0.25em] uppercase transition-all duration-300 group-hover:gap-2 hover:font-semibold sm:px-4 sm:text-[11px] ${
+                isScrolled
+                  ? "bg-primary text-white"
+                  : "hover:text-blue-dark border border-white/70 hover:bg-white"
+              }`}
             >
               <span className="transition-transform duration-300 group-hover:translate-x-[-2px]">
                 Events Hub

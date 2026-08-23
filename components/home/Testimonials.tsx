@@ -20,7 +20,7 @@ export function Testimonials() {
     <section className="bg-blue-dark py-24 md:py-36">
       <div className="container">
         <Reveal className="mx-auto max-w-4xl text-center">
-          <p className="eyebrow mb-8">Success stories</p>
+          <p className="eyebrow text-blue-light mb-16">Success stories</p>
           <blockquote className="min-h-[240px] md:min-h-[200px]">
             <p
               key={`${t.author}-${t.role}`}
@@ -29,7 +29,7 @@ export function Testimonials() {
               &ldquo;{t.quote}&rdquo;
             </p>
             <footer className="mt-10">
-              <div className="bg-accent mx-auto mb-5 h-px w-10" />
+              s{" "}
               <p className="text-blue-light text-sm tracking-[0.2em] uppercase">
                 {t.author}
               </p>
