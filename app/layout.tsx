@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Cormorant_Garamond } from "next/font/google";
 import SiteLoader from "@/components/SiteLoader";
 import "./globals.css";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${montserrat.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full">
-        <SiteLoader>{children}</SiteLoader>
+        <SmoothScrollProvider>
+          <SiteLoader>{children}</SiteLoader>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
