@@ -169,7 +169,6 @@ const Navbar = () => {
                   ? "bg-slate-900 text-white"
                   : "hover:text-blue-dark border border-white/70 hover:bg-white"
               }`}
-              d
             >
               <span className="transition-transform duration-300 group-hover:translate-x-[-2px]">
                 Agent Hub
