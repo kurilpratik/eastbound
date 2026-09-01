@@ -2,7 +2,7 @@ import SubHero from "@/components/SubHero";
 
 import { Reveal } from "@/components/Reveal";
 import { FeatureSection } from "@/components/destinations/FeatureSection";
-import { CtaBand } from "@/components/destinations/CtaBand";
+import { CtaBand } from "@/components/CtaBand";
 
 import { destinationPages, indiaCities } from "@/data/destinationPages";
 

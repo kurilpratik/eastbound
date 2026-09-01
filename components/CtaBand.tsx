@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { Button } from "../ui/Button";
+import { Button } from "./ui/Button";
 import { MoveRight } from "lucide-react";
 type Props = {
   eyebrow?: string;

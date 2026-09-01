@@ -5,18 +5,18 @@ export const navData = [
   },
   {
     title: "Experiences",
-    href: "/",
+    href: "/experiences",
   },
   {
     title: "Services",
-    href: "/",
+    href: "/services",
   },
   {
     title: "Newsletters",
-    href: "/",
+    href: "/newsletters",
   },
   {
     title: "Contact",
-    href: "/",
+    href: "/contact",
   },
 ];
