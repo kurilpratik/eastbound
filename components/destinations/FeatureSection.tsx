@@ -40,7 +40,7 @@ export function FeatureSection({
             flip ? "lg:[&>*:first-child]:order-2" : ""
           }`}
         >
-          <Reveal variant="image" className="relative w-full h-full">
+          <Reveal variant="image" className="relative h-full w-full">
             <img
               src={image}
               alt={name}
@@ -58,7 +58,7 @@ export function FeatureSection({
             <h2 className="text-primary font-serif text-4xl leading-[1.05] md:text-5xl">
               {name}
             </h2>
-            <p className="text-accent mt-5 max-w-lg font-serif text-xl leading-snug italic md:text-2xl">
+            <p className="mt-5 max-w-lg font-serif text-xl leading-snug text-neutral-700 italic md:text-2xl">
               {tagline}
             </p>
             <p className="text-muted-foreground mt-6 max-w-lg leading-relaxed font-light">
