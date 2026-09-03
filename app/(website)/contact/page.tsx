@@ -195,13 +195,16 @@ const ContactPage = () => {
         </section>
 
         {/* Offices — asymmetric stagger */}
-        <section className="bg-neutral-100 py-24 md:py-32">
+        <section
+          className="relative overflow-hidden bg-neutral-100 bg-cover bg-center bg-no-repeat py-24 md:py-32"
+          style={{ backgroundImage: `url('/images/offices.jpg')` }}
+        >
           <div className="container">
             <Reveal className="mb-16 max-w-xl lg:ml-[42%]">
-              <p className="eyebrow mb-4">Our Offices</p>
-              <h2 className="text-primary font-serif text-3xl leading-[1.05] md:text-5xl">
+              <p className="eyebrow text-blue-light mb-4">Our Offices</p>
+              <h2 className="font-serif text-3xl leading-[1.05] text-white md:text-5xl">
                 Three offices,{" "}
-                <em className="text-accent italic">five countries.</em>
+                <span className="text-accent">five countries.</span>
               </h2>
             </Reveal>
 

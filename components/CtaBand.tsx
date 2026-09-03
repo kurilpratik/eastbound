@@ -7,6 +7,7 @@ type Props = {
   title: string;
   copy?: string;
   cta?: string;
+  imageUrl?: string;
 };
 
 export function CtaBand({
@@ -14,23 +15,28 @@ export function CtaBand({
   title,
   copy,
   cta = "Start a conversation",
+  imageUrl = "/images/cta.jpg",
 }: Props) {
   return (
-    <section className="bg-blue-light text-primary-foreground">
-      <div className="container py-20 md:py-28">
+    <section
+      className="bg-blue-light text-primary-foreground relative overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${imageUrl})` }}
+    >
+      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+      <div className="relative z-10 container py-20 md:py-28">
         <Reveal className="max-w-3xl">
-          <p className="eyebrow text-blue-dark mb-4">{eyebrow}</p>
-          <h2 className="font-serif text-4xl leading-[1.05] md:text-5xl">
+          <p className="eyebrow text-blue-light mb-4">{eyebrow}</p>
+          <h2 className="font-serif text-4xl leading-[1.05] text-white md:text-5xl">
             {title}
           </h2>
           {copy && (
-            <p className="text-primary-foreground/70 my-6 max-w-xl leading-relaxed font-light">
+            <p className="my-6 max-w-xl leading-relaxed font-light text-white">
               {copy}
             </p>
           )}
 
           <Button size="lg" className="w-full sm:w-auto">
-            Make an enquiry <MoveRight />
+            {cta} <MoveRight />
           </Button>
         </Reveal>
       </div>
