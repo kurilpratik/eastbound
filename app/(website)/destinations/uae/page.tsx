@@ -10,7 +10,7 @@ const UAEPage = () => {
         backgroundVideo="/videos/UAE.mp4"
         eyebrow="Destinations"
       />
-      <DestinationSpace />
+      <DestinationSpace destinationId="uae" />
     </div>
   );
 };

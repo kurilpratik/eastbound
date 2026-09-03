@@ -10,7 +10,7 @@ const BhutanPage = () => {
         backgroundVideo="/videos/Bhutan2.mp4"
         eyebrow="Destinations"
       />
-      <DestinationSpace />
+      <DestinationSpace destinationId="bhutan" />
     </div>
   );
 };

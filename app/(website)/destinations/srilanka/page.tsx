@@ -10,7 +10,7 @@ const SriLankaPage = () => {
         backgroundVideo="/videos/SriLanka.mp4"
         eyebrow="Destinations"
       />
-      <DestinationSpace />
+      <DestinationSpace destinationId="srilanka" />
     </div>
   );
 };

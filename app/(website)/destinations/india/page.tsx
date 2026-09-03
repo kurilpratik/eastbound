@@ -10,7 +10,7 @@ const IndiaPage = () => {
         backgroundVideo="/videos/Amer.mp4"
         eyebrow="Destinations"
       />
-      <DestinationSpace />
+      <DestinationSpace destinationId="india" />
     </div>
   );
 };

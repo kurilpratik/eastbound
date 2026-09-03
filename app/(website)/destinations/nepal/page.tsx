@@ -10,7 +10,7 @@ const NepalPage = () => {
         backgroundVideo="/videos/Nepal.mp4"
         eyebrow="Destinations"
       />
-      <DestinationSpace />
+      <DestinationSpace destinationId="nepal" />
     </div>
   );
 };
