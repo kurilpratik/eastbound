@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/Button";
 import { MoveRight } from "lucide-react";
 
 const heroVideos = ["/videos/h2.mp4", "/videos/h1.mp4", "/videos/h3.mp4"];
 
 const Hero = () => {
+  const router = useRouter();
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
 
   useEffect(() => {
@@ -63,7 +65,11 @@ const Hero = () => {
             experiences for tour operators, travel agents, wholesalers, across
             India, Nepal, Bhutan, Sri Lanka and the UAE that are its signature.
           </p>
-          <Button size="lg" className="w-full sm:w-auto">
+          <Button
+            size="lg"
+            className="w-full sm:w-auto"
+            onClick={() => router.push("/contact")}
+          >
             Talk to our experts <MoveRight />
           </Button>
         </div>

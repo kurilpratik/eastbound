@@ -155,7 +155,42 @@ export function Footer() {
           <span>
             © {new Date().getFullYear()} Eastbound Travel. All rights reserved.
           </span>
-          <span>India · Bhutan · Nepal · Sri Lanka · UAE</span>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="/destinations/india"
+              className="hover:text-accent transition-colors"
+            >
+              India
+            </a>
+            <span>·</span>
+            <a
+              href="/destinations/bhutan"
+              className="hover:text-accent transition-colors"
+            >
+              Bhutan
+            </a>
+            <span>·</span>
+            <a
+              href="/destinations/nepal"
+              className="hover:text-accent transition-colors"
+            >
+              Nepal
+            </a>
+            <span>·</span>
+            <a
+              href="/destinations/srilanka"
+              className="hover:text-accent transition-colors"
+            >
+              Sri Lanka
+            </a>
+            <span>·</span>
+            <a
+              href="/destinations/uae"
+              className="hover:text-accent transition-colors"
+            >
+              UAE
+            </a>
+          </div>
         </div>
       </div>
 
