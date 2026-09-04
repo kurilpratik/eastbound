@@ -22,22 +22,64 @@ export const allDestinations: DestinationDetail[] = [
     image: "/images/destinations/india/1.jpg",
     highlightPlaces: [
       {
-        name: "Jaipur",
-        image: "/images/destinations/india/2.jpg",
+        name: "Delhi",
+        image: "/images/destinations/india/cities/delhi.jpg",
         description:
-          "The Pink City brings palace courtyards, fort views, artisan bazaars, and slow luxury at every turn.",
+          "India's capital, where Mughal monuments, grand boulevards and bustling bazaars meet modern life.",
+      },
+      {
+        name: "Jaipur",
+        image: "/images/destinations/india/cities/jaipur.jpg",
+        description:
+          "The Pink City brings palace courtyards, artisan bazaars, and slow luxury at every turn.",
+      },
+      {
+        name: "Udaipur",
+        image: "/images/destinations/india/cities/Udaipur.jpg",
+        description:
+          "Lakeside palaces, royal history and romantic boat rides define this 'City of Lakes'.",
+      },
+      {
+        name: "Jodhpur",
+        image: "/images/destinations/india/cities/jodhpur.jpg",
+        description:
+          "Known as the Blue City, with fort views, spice markets and desert gateway experiences.",
+      },
+      {
+        name: "Agra",
+        image: "/images/destinations/india/cities/agra.jpg",
+        description:
+          "Home to the Taj Mahal and Mughal-era masterpieces, a must-visit for history and architecture.",
       },
       {
         name: "Varanasi",
-        image: "/images/destinations/india/3.jpg",
+        image: "/images/destinations/india/cities/varanasi.jpg",
         description:
           "A sunrise on the ghats reveals the spiritual rhythm of the Ganges in one of India’s most unforgettable cities.",
       },
       {
-        name: "Kerala Backwaters",
-        image: "/images/destinations/india/4.jpg",
+        name: "Mumbai",
+        image: "/images/destinations/india/cities/mumbai.jpg",
         description:
-          "Houseboats, spice gardens, and quiet canals offer a peaceful contrast to India’s busiest cities.",
+          "India's financial and cinematic capital — energetic waterfronts, colonial architecture and a thriving food scene.",
+      },
+      {
+        name: "Kochi",
+        image: "/images/destinations/india/cities/kochi.jpg",
+        description:
+          "Kerala's historic port city with spice trade heritage, Chinese fishing nets and coastal charm.",
+      },
+      {
+        name: "Kolkata",
+        image: "/images/destinations/india/cities/kolkata.jpg",
+        description:
+          "A literary, cultural and culinary heartland with colonial-era institutions and vibrant street life.",
+      },
+      {
+        name: "Amritsar",
+        image: "/images/destinations/india/cities/amritsar.jpg",
+        description:
+          "Spiritual centre of the Sikhs, home to the Golden Temple and moving communal traditions.",
       },
     ],
     experiences: [
