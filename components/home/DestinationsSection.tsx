@@ -56,6 +56,7 @@ const destinations = [
 const DestinationsSection = () => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(1);
+  const activeDestination = destinations[activeIndex];
 
   return (
     <section className="bg-[#fbf9f5] py-20 sm:py-28 lg:py-32">
@@ -77,107 +78,96 @@ const DestinationsSection = () => {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-10 lg:mt-16 lg:grid-cols-[1.03fr_0.87fr] lg:gap-14 xl:gap-16">
-          <article className="bg-blue-dark relative min-h-[440px] overflow-hidden sm:min-h-[570px]">
-            {destinations.map((destination, index) => (
+        <div className="mt-14 lg:mt-16">
+          <div className="border-blue-dark/10 border-y bg-[#f5f1ea]">
+            <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-5">
+              {destinations.map((destination, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <button
+                    key={destination.name}
+                    type="button"
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onFocus={() => setActiveIndex(index)}
+                    onClick={() => {
+                      setActiveIndex(index);
+                      router.push(`/destinations/${destination.slug}`);
+                    }}
+                    aria-pressed={isActive}
+                    className={`group border-blue-dark/10 flex w-full items-center justify-between gap-3 border-b px-4 py-4 text-left transition-colors duration-300 hover:cursor-pointer sm:px-5 sm:py-5 lg:border-r lg:border-b-0 lg:last:border-r-0 ${
+                      isActive ? "text-blue-dark bg-white" : "text-blue-dark/70"
+                    }`}
+                  >
+                    <span className="text-[10px] font-medium tracking-[0.24em] text-current/80 uppercase">
+                      {destination.label}
+                    </span>
+                    <span
+                      className={`font-serif text-2xl leading-none tracking-[-0.04em] transition-all duration-300 sm:text-3xl ${
+                        isActive
+                          ? "text-primary italic"
+                          : "group-hover:text-primary"
+                      }`}
+                    >
+                      {destination.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-10 grid lg:grid-cols-[1.15fr_0.85fr] lg:gap-0">
+            <article className="bg-blue-dark relative min-h-[360px] overflow-hidden sm:min-h-[480px]">
               <Image
-                key={destination.name}
-                src={destination.image}
-                alt={
-                  index === activeIndex ? `${destination.name} landscape` : ""
-                }
-                aria-hidden={index !== activeIndex}
+                src={activeDestination.image}
+                alt={`${activeDestination.name} landscape`}
                 fill
-                sizes="(max-width: 1023px) 100vw, 46vw"
-                className={`object-cover transition-opacity duration-700 ease-in-out motion-reduce:transition-none ${
-                  index === activeIndex ? "opacity-100" : "opacity-0"
-                }`}
+                sizes="(max-width: 1023px) 100vw, 52vw"
+                className="object-cover"
               />
-            ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#132436]/90 via-[#132436]/15 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#132436]/90 via-[#132436]/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-9 lg:p-10">
+                <p className="text-[10px] font-medium tracking-[0.32em] text-white/80 uppercase sm:text-xs">
+                  {activeDestination.label} · {activeDestination.region}
+                </p>
+                <h3 className="mt-4 font-serif text-5xl leading-none tracking-[-0.04em] sm:text-6xl">
+                  {activeDestination.name}
+                </h3>
+              </div>
+            </article>
 
-            {destinations.map((destination, index) => {
-              const isActive = index === activeIndex;
+            <div className="bg-white p-7 shadow-[0_30px_60px_rgba(19,36,54,0.08)] sm:p-9 lg:flex lg:min-h-[480px] lg:flex-col lg:justify-between lg:p-10">
+              <div>
+                <p className="text-primary text-[10px] font-medium tracking-[0.32em] uppercase">
+                  {activeDestination.label} · {activeDestination.region}
+                </p>
+                <h3 className="text-blue-dark mt-5 font-serif text-4xl leading-none tracking-[-0.04em] sm:text-5xl">
+                  {activeDestination.name}
+                </h3>
+              </div>
 
-              return (
-                <div
-                  key={destination.name}
-                  aria-hidden={!isActive}
-                  className={`absolute inset-x-0 bottom-0 p-7 text-white transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none sm:p-9 lg:p-10 ${
-                    isActive
-                      ? "translate-y-0 opacity-100"
-                      : "pointer-events-none translate-y-3 opacity-0"
-                  }`}
-                >
-                  <p className="text-[10px] font-medium tracking-[0.32em] text-white/80 uppercase sm:text-xs">
-                    {destination.label} · {destination.region}
-                  </p>
-                  <h3 className="mt-4 font-serif text-5xl leading-none tracking-[-0.04em] sm:text-6xl">
-                    {destination.name}
-                  </h3>
-                  <p className="mt-1 max-w-sm text-sm leading-6 text-white/90 sm:text-base">
-                    {destination.description}
-                  </p>
-                  {/* <a
-                    href={destination.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    tabIndex={isActive ? 0 : -1}
-                    className="hover:text-primary focus-visible:text-primary mt-6 inline-flex text-[10px] font-medium tracking-[0.34em] text-white uppercase transition-colors focus-visible:outline-none"
-                  >
-                    View location <span aria-hidden="true">→</span>
-                  </a> */}
-                </div>
-              );
-            })}
-          </article>
+              <div className="mt-auto pt-8">
+                <p className="text-blue-dark/75 text-base leading-7">
+                  {activeDestination.description}
+                </p>
 
-          <div className="border-blue-dark/10 border-y">
-            {destinations.map((destination, index) => {
-              const isActive = index === activeIndex;
-
-              return (
-                <button
-                  key={destination.name}
-                  type="button"
-                  onMouseEnter={() => setActiveIndex(index)}
-                  onFocus={() => setActiveIndex(index)}
-                  onClick={() => {
-                    setActiveIndex(index);
-                    router.push(`/destinations/${destination.slug}`);
-                  }}
-                  aria-pressed={isActive}
-                  className="group border-blue-dark/10 grid w-full grid-cols-[2.75rem_1fr_auto] items-center gap-2 border-b py-6 text-left last:border-b-0 hover:cursor-pointer sm:grid-cols-[3rem_1fr_auto] sm:py-7"
-                >
-                  <span
-                    className={`text-[10px] tracking-[0.24em] ${isActive ? "text-primary" : "text-blue-dark/55"}`}
+                <div className="border-blue-dark/10 mt-8 border-t pt-5">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      router.push(`/destinations/${activeDestination.slug}`)
+                    }
+                    className="group text-blue-dark hover:text-primary inline-flex items-center gap-3 text-[10px] font-medium tracking-[0.32em] uppercase transition-colors"
                   >
-                    {destination.label}
-                  </span>
-                  <span
-                    className={`inline-block transform-gpu font-serif text-4xl leading-none tracking-[-0.04em] transition-[color,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none sm:text-5xl ${
-                      isActive
-                        ? "text-primary translate-x-3 italic"
-                        : "text-blue-dark group-hover:text-primary group-focus-visible:text-primary translate-x-0"
-                    }`}
-                  >
-                    {destination.name}
-                  </span>
-                  <span
-                    className={`inline-block transform-gpu text-[9px] font-medium tracking-[0.28em] uppercase transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none sm:text-[10px] ${
-                      isActive
-                        ? "text-primary translate-x-2 opacity-100"
-                        : "text-primary translate-x-0 opacity-0 group-hover:translate-x-2 group-hover:opacity-100 group-focus-visible:translate-x-2 group-focus-visible:opacity-100"
-                    }`}
-                  >
-                    Explore{" "}
-                    <span className="inline-block transform-gpu transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
+                    Explore destination
+                    <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
-                  </span>
-                </button>
-              );
-            })}
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
