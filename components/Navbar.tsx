@@ -167,7 +167,7 @@ const Navbar = () => {
               className={`group inline-flex items-center gap-0 border px-2.5 py-2 text-[9px] tracking-[0.25em] uppercase transition-all duration-300 group-hover:gap-2 hover:font-semibold sm:px-4 sm:text-[11px] ${
                 isScrolled
                   ? "border-blue-dark text-blue-dark hover:bg-blue-dark hover:text-white"
-                  : "border border-white/70 text-white hover:bg-white hover:text-blue-dark"
+                  : "hover:text-blue-dark border border-white/70 text-white hover:bg-white"
               }`}
             >
               <span className="transition-transform duration-300 group-hover:translate-x-[-2px]">
@@ -180,7 +180,7 @@ const Navbar = () => {
               className={`group inline-flex items-center gap-0 border px-2.5 py-2 text-[9px] tracking-[0.25em] uppercase transition-all duration-300 group-hover:gap-2 hover:font-semibold sm:px-4 sm:text-[11px] ${
                 isScrolled
                   ? "border-primary text-primary hover:bg-primary hover:text-white"
-                  : "border border-white/70 text-white hover:bg-white hover:text-blue-dark"
+                  : "hover:text-blue-dark border border-white/70 text-white hover:bg-white"
               }`}
             >
               <span className="transition-transform duration-300 group-hover:translate-x-[-2px]">
