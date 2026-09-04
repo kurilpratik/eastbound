@@ -1,10 +1,10 @@
 // Use images from the public folder. If a specific destination image
 // doesn't exist yet, fall back to a generic hero image.
 const india = "/images/destinations/india.jpg";
-const nepal = "/images/home-hero.jpg"; // fallback
+const nepal = "/images/destinations/nepal/1.jpg"; // fallback
 const bhutan = "/images/destinations/bhutan.jpg";
 const srilanka = "/images/destinations/srilanka.jpg";
-const uae = "/images/home-hero.jpg"; // fallback
+const uae = "/images/destinations/uae/1.jpg"; // fallback
 
 export type DestinationPage = {
   id: string;
