@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CtaBand } from "./CtaBand";
 
 type TextPageProps = {
   title: string;
@@ -27,6 +28,10 @@ export default function TextPage({
           {children}
         </article>
       </section>
+      <CtaBand
+        title="Let's create remarkable journeys together."
+        copy="Whether you're planning bespoke luxury travel, incentive programmes or specialist group tours, our experts are ready to help."
+      />
     </main>
   );
 }
