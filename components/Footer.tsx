@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { site } from "@/data/site";
 import { Reveal } from "./Reveal";
 
@@ -156,40 +157,16 @@ export function Footer() {
             © {new Date().getFullYear()} Eastbound Travel. All rights reserved.
           </span>
           <div className="flex flex-wrap items-center gap-3">
-            <a
-              href="/destinations/india"
+            <Link
+              href="/privacy"
               className="hover:text-accent transition-colors"
             >
-              India
-            </a>
+              Privacy Policy
+            </Link>
             <span>·</span>
-            <a
-              href="/destinations/bhutan"
-              className="hover:text-accent transition-colors"
-            >
-              Bhutan
-            </a>
-            <span>·</span>
-            <a
-              href="/destinations/nepal"
-              className="hover:text-accent transition-colors"
-            >
-              Nepal
-            </a>
-            <span>·</span>
-            <a
-              href="/destinations/srilanka"
-              className="hover:text-accent transition-colors"
-            >
-              Sri Lanka
-            </a>
-            <span>·</span>
-            <a
-              href="/destinations/uae"
-              className="hover:text-accent transition-colors"
-            >
-              UAE
-            </a>
+            <Link href="/terms" className="hover:text-accent transition-colors">
+              Terms &amp; Conditions
+            </Link>
           </div>
         </div>
       </div>
