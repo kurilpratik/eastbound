@@ -58,7 +58,11 @@ export default function Events() {
             </p>
           </div>
 
-          <PortalLoginForm supportCopy={supportCopy} />
+          <PortalLoginForm
+            supportCopy={supportCopy}
+            redirectOnSubmit
+            redirectPath="/events/events-board"
+          />
         </div>
       </div>
     </main>
