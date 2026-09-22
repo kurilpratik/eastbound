@@ -19,6 +19,7 @@ const ContactPage = () => {
     <div>
       <main className="bg-blue-dark text-foreground">
         {/* Asymmetric intro: oversized headline left, quick contact rail right */}
+        {/* subhero */}
         <section className="bg-blue-dark pt-36 pb-20 text-white md:pt-44 md:pb-28">
           <div className="container grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-7">
