@@ -61,9 +61,9 @@ const Hero = () => {
           </h1>
           <p className="mt-5 mb-6 max-w-xl text-sm leading-6 text-white/85 sm:text-sm sm:leading-7">
             From luxury FITs and incentive travel to photography, culinary tours
-            and educational trips, Eastbound designs classic and seamless travel
-            experiences for tour operators, travel agents, wholesalers, across
-            India, Nepal, Bhutan, Sri Lanka and the UAE that are its signature.
+            and educational trips, Eastbound designs classic, seamless and
+            signature travel experiences across India, Nepal, Bhutan, Sri Lanka
+            and the UAE for tour operators, travel agents, wholesalers globally.
           </p>
           <Button
             size="lg"

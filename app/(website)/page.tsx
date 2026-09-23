@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { AwardsSection } from "@/components/home/AwardsSection";
 import { NewslettersSection } from "@/components/home/NewslettersSection";
 import BrandLogos from "@/components/BrandLogos";
+import { FaqAccordion } from "@/components/FaqAccordion";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <Testimonials />
       <AwardsSection />
       <NewslettersSection />
+      <FaqAccordion />
       <BrandLogos />
     </div>
   );
