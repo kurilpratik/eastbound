@@ -76,6 +76,7 @@ export const team: PersonProfile[] = [
     name: "Reshma Naqvi",
     role: "Eastbound Group",
     location: "India",
+    image: "/images/team/Reshma_circulars.jpg",
     biography: [
       "Reshma is part of Eastbound Group’s India team, supporting the thoughtful planning and close collaboration behind its journeys. A fuller profile will be added soon.",
     ],
@@ -84,6 +85,7 @@ export const team: PersonProfile[] = [
     name: "Swati Chandra",
     role: "Eastbound Group",
     location: "Gurgaon, India",
+    image: "/images/team/Swati_circular.jpg",
     biography: [
       "Swati Chandra is part of Eastbound Group’s team in Gurgaon, contributing to the company’s strategy in India and globally. An enthusiastic traveller herself, she brings that same spirit of discovery to her work, guided by a simple philosophy: smile, and spread smiles to others.",
     ],
