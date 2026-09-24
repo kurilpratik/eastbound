@@ -7,7 +7,8 @@ type Props = {
   name: string;
   tagline: string;
   intro: string;
-  points: string[];
+  points?: string[];
+  faqs?: { q: string; a: string }[];
   cta: string;
   image: string;
 };
@@ -24,6 +25,7 @@ export function ExperienceChapter({
   tagline,
   intro,
   points,
+  faqs,
   cta,
   image,
 }: Props) {
@@ -67,24 +69,19 @@ export function ExperienceChapter({
             {intro}
           </p>
 
-          <ol className="mt-10 max-w-xl">
-            {points.map((p, i) => (
-              <li
-                key={p}
-                className="card-frame group border-border/70 flex items-baseline gap-5 border-t py-4 last:border-b"
-              >
-                <span className="text-blue-light shrink-0 font-serif text-sm">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-blue-dark group-hover:text-accent text-sm font-light transition-colors md:text-base">
-                  {p}
-                </span>
-              </li>
-            ))}
-          </ol>
+          {faqs && faqs.length > 0 && (
+            <div className="mt-10 max-w-xl">
+              {faqs.map((f) => (
+                <div key={f.q} className="mb-6">
+                  <p className="text-blue-dark font-medium">{f.q}</p>
+                  <p className="text-muted-foreground mt-2 font-light">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          )}
 
           <Link
-            href="/"
+            href="/contact"
             className="group border-primary/40 text-primary hover:border-accent hover:text-accent mt-10 inline-flex items-center gap-3 border-b pb-2 text-[0.72rem] tracking-[0.28em] uppercase transition-colors"
           >
             {cta}
