@@ -76,9 +76,9 @@ export const team: PersonProfile[] = [
     name: "Reshma Naqvi",
     role: "Eastbound Group",
     location: "India",
-    image: "/images/team/Reshma_circulars.jpg",
+    image: "/images/team/Reshma_circular.jpg",
     biography: [
-      "Reshma is part of Eastbound Group’s India team, supporting the thoughtful planning and close collaboration behind its journeys. A fuller profile will be added soon.",
+      "Reshma Naqvi drives business development at Eastbound Group, working with partners around the world to bring discerning travellers to India. She first built Eastbound's luxury segment across Germany and the USA. Earlier in her career she held sales and operations roles at Cox &amp; Kings and TWX. Known for her drive and her love of exploring new places, Reshma is passionate about the experiential journeys today&#39;s travellers look for.",
     ],
   },
   {
@@ -93,7 +93,7 @@ export const team: PersonProfile[] = [
   {
     name: "Shantanu Mehta",
     role: "General Manager, Eastbound DMC",
-    location: "Dubai, UAE",
+    location: "UAE",
     image: "/images/team/Shantanu_circle_matched.jpg",
     biography: [
       "Shantanu Mehta is General Manager of the Eastbound Group DMC in Dubai, bringing over two decades of experience in tourism and hospitality. Before this role, he held senior positions at Arabian Oryx Travel & Tourism and Rotana across contracting, reservations, product development and group sales.",

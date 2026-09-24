@@ -24,4 +24,12 @@ export const faqs: FaqItem[] = [
     answer:
       "Eastbound was founded in 2006 and has over two decades of on-the-ground experience across its five markets.",
   },
+  {
+    question: "When was Eastbound Group founded?",
+    answer: "2006.",
+  },
+  {
+    question: "Who founded Eastbound Group?",
+    answer: "Prrithviraj Singh, Amit Kishore and Manish Pratik.",
+  },
 ];

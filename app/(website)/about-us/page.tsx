@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { Reveal } from "@/components/Reveal";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { Button } from "@/components/ui/Button";
 import { aboutUsHero, aboutUsStory, leaders, team } from "@/data/aboutUs";
 import { site } from "@/data/site";
@@ -208,7 +209,7 @@ const AboutUs = () => {
               </p>
             </Reveal>
 
-            <div className="grid gap-x-8 gap-y-16 md:grid-cols-2 xl:grid-cols-5">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-16 xl:grid-cols-5">
               {team.map((member, index) => (
                 <Reveal
                   key={member.name}
@@ -238,14 +239,10 @@ const AboutUs = () => {
                       )}
 
                       <h3 className="text-primary font-serif text-3xl leading-[0.96] tracking-tight">
-                        {member.name.split(" ").map((part, idx) => (
-                          <span key={`${part}-${idx}`} className="block">
-                            {part}
-                          </span>
-                        ))}
+                        {member.name}
                       </h3>
 
-                      <p className="text-blue-light mt-5 text-[0.62rem] tracking-[0.22em] uppercase">
+                      <p className="text-blue-dark mt-5 text-[0.62rem] tracking-[0.22em] uppercase">
                         {member.role}
                       </p>
 
@@ -258,6 +255,15 @@ const AboutUs = () => {
                   </article>
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-background py-16">
+          <div className="container">
+            <div className="ml-auto max-w-2xl">
+              <p className="eyeborw text-blue-light ml-4">About Eastbound</p>
+              <FaqAccordion compact alignRight />
             </div>
           </div>
         </section>

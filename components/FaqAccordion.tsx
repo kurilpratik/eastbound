@@ -5,22 +5,36 @@ import { ChevronDown } from "lucide-react";
 import { faqs } from "@/data/faqs";
 import { Reveal } from "@/components/Reveal";
 
-export function FaqAccordion() {
+type FaqAccordionProps = {
+  compact?: boolean;
+  alignRight?: boolean;
+};
+
+export function FaqAccordion({
+  compact = false,
+  alignRight = false,
+}: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-cream py-24 md:py-32">
-      <div className="container">
-        <Reveal className="mx-auto mb-12 max-w-3xl text-center" delay={80}>
-          <p className="eyebrow mb-6">Frequently asked questions</p>
-          <h2 className="font-serif text-4xl leading-[1.05] md:text-5xl">
-            Everything you need to know about travelling with{" "}
-            <span className="text-primary">Eastbound</span>
-          </h2>
-        </Reveal>
+    <section className={compact ? "py-4 md:py-6" : "bg-cream py-24 md:py-32"}>
+      <div className={compact ? "container" : "container"}>
+        {!compact && (
+          <Reveal className="mx-auto mb-12 max-w-3xl text-center" delay={80}>
+            <p className="eyebrow mb-6">Frequently asked questions</p>
+            <h2 className="font-serif text-4xl leading-[1.05] md:text-5xl">
+              Everything you need to know about travelling with{" "}
+              <span className="text-primary">Eastbound</span>
+            </h2>
+          </Reveal>
+        )}
 
-        <div className="mx-auto max-w-4xl">
-          {faqs.map((item, index) => {
+        <div
+          className={`mx-auto ${compact ? "max-w-2xl" : "max-w-4xl"} ${
+            alignRight ? "ml-auto text-left" : ""
+          }`}
+        >
+          {faqs.slice(0, compact ? 2 : faqs.length).map((item, index) => {
             const isOpen = openIndex === index;
 
             return (
@@ -32,14 +46,18 @@ export function FaqAccordion() {
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left md:py-7"
+                  className="flex w-full items-center justify-between gap-6 py-5 md:py-6"
                 >
-                  <span className="text-blue-dark max-w-[90%] font-serif text-xl leading-tight font-medium md:text-3xl">
+                  <span
+                    className={`text-blue-dark w-full font-serif leading-tight font-medium ${
+                      compact ? "text-lg md:text-2xl" : "text-xl md:text-3xl"
+                    } text-left`}
+                  >
                     {item.question}
                   </span>
-                  <span className="text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current">
+                  <span className="text-primary flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-current md:h-9 md:w-9">
                     <ChevronDown
-                      className={`h-5 w-5 transition-transform duration-300 ${
+                      className={`h-4 w-4 transition-transform duration-300 ${
                         isOpen ? "rotate-180" : "rotate-0"
                       }`}
                     />
@@ -54,7 +72,13 @@ export function FaqAccordion() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-6 text-base leading-relaxed text-neutral-700 md:text-lg">
+                    <p
+                      className={`pb-5 text-left leading-relaxed text-neutral-700 ${
+                        compact
+                          ? "text-sm md:text-base"
+                          : "text-base md:text-lg"
+                      }`}
+                    >
                       {item.answer}
                     </p>
                   </div>
