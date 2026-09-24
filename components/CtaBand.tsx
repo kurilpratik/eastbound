@@ -35,9 +35,11 @@ export function CtaBand({
             </p>
           )}
 
-          <Button size="lg" className="w-full sm:w-auto">
-            {cta} <MoveRight />
-          </Button>
+          <Link href="/contact" passHref>
+            <Button size="lg" className="w-full sm:w-auto">
+              {cta} <MoveRight />
+            </Button>
+          </Link>
         </Reveal>
       </div>
     </section>

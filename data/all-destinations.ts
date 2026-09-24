@@ -4,6 +4,11 @@ export type HighlightPlace = {
   description: string;
 };
 
+export type DestinationFaq = {
+  question: string;
+  answer: string;
+};
+
 export type DestinationDetail = {
   id: string;
   name: string;
@@ -11,6 +16,7 @@ export type DestinationDetail = {
   image: string;
   highlightPlaces: HighlightPlace[];
   experiences: string[];
+  faqs: DestinationFaq[];
 };
 
 export const allDestinations: DestinationDetail[] = [
@@ -89,6 +95,18 @@ export const allDestinations: DestinationDetail[] = [
       "Ayurvedic wellness retreat",
       "Heritage walk through Old Delhi",
     ],
+    faqs: [
+      {
+        question: "What kind of India trips does Eastbound design?",
+        answer:
+          "Heritage and royal India, wildlife and nature safaris, Ayurveda and wellness retreats, and culinary and cultural immersion journeys - built as luxury FIT, incentive or educational programmes.",
+      },
+      {
+        question: "Which Indian cities does Eastbound cover?",
+        answer:
+          "All of India – but based on our client’s reviews and preferences we recommend Delhi, Jaipur, Udaipur, Jodhpur, Agra, Varanasi, Mumbai, Kochi, Kolkata and Amritsar, alongside specific regional circuits in Rajasthan, central India and South India.",
+      },
+    ],
   },
   {
     id: "nepal",
@@ -122,6 +140,13 @@ export const allDestinations: DestinationDetail[] = [
       "White-water rafting in the Trishuli",
       "Monastery and heritage circuit",
       "Wildlife safari in Chitwan",
+    ],
+    faqs: [
+      {
+        question: "What does Eastbound offer in Nepal?",
+        answer:
+          "UNESCO heritage sites in the Kathmandu Valley, teahouse-to-premium-lodge trekking, jungle safaris in Chitwan and Bardia, and adventure travel including white-water rafting and paragliding. Download Nepal Destination Profile.",
+      },
     ],
   },
   {
@@ -157,6 +182,13 @@ export const allDestinations: DestinationDetail[] = [
       "Farmhouse dining in mountain villages",
       "River valley scenic walks",
     ],
+    faqs: [
+      {
+        question: "Do travellers need a permit to visit Bhutan?",
+        answer:
+          "Yes - Bhutan requires visas and permits for foreign visitors; Eastbound manages this process end-to-end as part of every itinerary.",
+      },
+    ],
   },
   {
     id: "srilanka",
@@ -191,6 +223,14 @@ export const allDestinations: DestinationDetail[] = [
       "Beach break in the south coast",
       "Scenic rail journey through the hills",
     ],
+    faqs: [
+      {
+        question:
+          "What wildlife can travellers see in Sri Lanka with Eastbound?",
+        answer:
+          "Leopard and elephant safaris in Yala and Wilpattu national parks are core to Eastbound’s Sri Lanka itineraries.",
+      },
+    ],
   },
   {
     id: "uae",
@@ -224,6 +264,13 @@ export const allDestinations: DestinationDetail[] = [
       "Falconry and dune adventure",
       "Luxury stopover itinerary",
       "MICE and incentive-ready venue access",
+    ],
+    faqs: [
+      {
+        question: "Can a UAE stopover be combined with an India or Nepal trip?",
+        answer:
+          "Yes - Eastbound regularly designs stopover and layover programmes that connect Dubai or Abu Dhabi with sub-continent itineraries.",
+      },
     ],
   },
 ];

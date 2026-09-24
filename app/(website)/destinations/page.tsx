@@ -3,8 +3,10 @@ import SubHero from "@/components/SubHero";
 import { Reveal } from "@/components/Reveal";
 import { FeatureSection } from "@/components/destinations/FeatureSection";
 import { CtaBand } from "@/components/CtaBand";
+import { FaqAccordion } from "@/components/FaqAccordion";
 
 import { destinationPages, indiaCities } from "@/data/destinationPages";
+import { faqs } from "@/data/faqs";
 
 const DestinationsPage = () => {
   return (
@@ -12,8 +14,8 @@ const DestinationsPage = () => {
       <SubHero
         eyebrow="Curated escapes"
         title="Discover India and the Sub-Continent Through Local Experts "
-        description="Every destination tells a different story. From Himalayan kingdoms and ancient temples to wildlife, wellness retreats and vibrant cities, our teams know every region intimately - and design every journey around it. "
-        backgroundVideo="/videos/bhutan.mp4"
+        description="Discover Eastbound’s five specialist destinations - India, Nepal, Bhutan, Sri Lanka and the UAE - and see how our on-the-ground teams curate access most visitors never see."
+        backgroundVideo="/videos/Bhutan2.mp4"
       />
 
       <main className="bg-background text-foreground">
@@ -21,7 +23,7 @@ const DestinationsPage = () => {
         <section className="bg-secondary/60 py-16 md:py-20">
           <div className="container grid gap-10 md:grid-cols-[1fr_1.4fr]">
             <Reveal>
-              <p className="eyebrow mb-4">Where we travel</p>
+              <p className="eyebrow text-blue-light mb-4">Where we travel</p>
               <h2 className="text-primary font-serif text-3xl leading-tight md:text-4xl">
                 Five countries, one team on the ground.
               </h2>
@@ -67,6 +69,15 @@ const DestinationsPage = () => {
             {d.id === "india" && <IndiaCities />}
           </div>
         ))}
+
+        <section className="bg-background py-8 md:py-12">
+          <div className="container">
+            <div className="ml-auto max-w-2xl">
+              <p className="eyebrow text-blue-light ml-4">The Destinations</p>
+              <FaqAccordion compact alignRight items={faqs.slice(-2)} />
+            </div>
+          </div>
+        </section>
 
         <CtaBand
           eyebrow="Plan with us"

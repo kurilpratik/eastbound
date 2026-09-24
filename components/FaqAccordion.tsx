@@ -2,23 +2,26 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { faqs } from "@/data/faqs";
+import { faqs, type FaqItem } from "@/data/faqs";
 import { Reveal } from "@/components/Reveal";
 
 type FaqAccordionProps = {
   compact?: boolean;
   alignRight?: boolean;
+  items?: FaqItem[];
 };
 
 export function FaqAccordion({
   compact = false,
   alignRight = false,
+  items,
 }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const faqItems = items ?? faqs;
 
   return (
     <section className={compact ? "py-4 md:py-6" : "bg-cream py-24 md:py-32"}>
-      <div className={compact ? "container" : "container"}>
+      <div className="container">
         {!compact && (
           <Reveal className="mx-auto mb-12 max-w-3xl text-center" delay={80}>
             <p className="eyebrow mb-6">Frequently asked questions</p>
@@ -34,7 +37,7 @@ export function FaqAccordion({
             alignRight ? "ml-auto text-left" : ""
           }`}
         >
-          {faqs.slice(0, compact ? 2 : faqs.length).map((item, index) => {
+          {(compact ? faqItems.slice(0, 2) : faqItems).map((item, index) => {
             const isOpen = openIndex === index;
 
             return (

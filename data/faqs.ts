@@ -32,4 +32,13 @@ export const faqs: FaqItem[] = [
     question: "Who founded Eastbound Group?",
     answer: "Prrithviraj Singh, Amit Kishore and Manish Pratik.",
   },
+  {
+    question: "Which destinations does Eastbound specialise in?",
+    answer: "India, Nepal, Bhutan, Sri Lanka and the UAE.",
+  },
+  {
+    question: "Can Eastbound combine several countries in one itinerary?",
+    answer:
+      "Yes - multi-country routings such as India-Nepal-Bhutan, or a UAE stopover paired with a sub-continent journey, are a regular part of what Eastbound designs.",
+  },
 ];

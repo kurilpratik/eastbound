@@ -37,8 +37,8 @@ const DestinationSpace = ({ destinationId }: DestinationSpaceProps) => {
               alt={destination.name}
               className="h-[420px] w-full object-cover md:h-[560px]"
               loading="lazy"
-              width={1200}
-              height={1200}
+              width={600}
+              height={600}
             />
           </Reveal>
 
@@ -141,7 +141,7 @@ const DestinationSpace = ({ destinationId }: DestinationSpaceProps) => {
           </Reveal>
         </div>
 
-        <div className="border-border/70 mt-16 border-t pt-10">
+        {/* <div className="border-border/70 mt-16 border-t pt-10">
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
@@ -164,6 +164,40 @@ const DestinationSpace = ({ destinationId }: DestinationSpaceProps) => {
               </Link>
             </div>
           </Reveal>
+        </div> */}
+      </section>
+
+      <section className="bg-background pb-20 md:pb-28">
+        <div className="container">
+          <Reveal className="mb-8 max-w-xl">
+            <p className="eyebrow text-blue-light mb-3">FAQs</p>
+            <h2 className="text-primary font-serif text-3xl leading-[1.05] md:text-4xl">
+              Questions about {destination.name}
+            </h2>
+          </Reveal>
+
+          <div className="max-w-5xl">
+            {destination.faqs.map((item, index) => (
+              <div
+                key={item.question}
+                className="border-border/70 max-w-3xl border-b py-6 last:border-b-0"
+              >
+                <div className="grid items-start gap-5 md:grid-cols-[80px_minmax(0,1fr)]">
+                  <span className="text-primary pt-1 font-serif text-base md:text-lg">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-blue-dark font-serif text-xl leading-tight md:text-[1.7rem] md:leading-[1.2]">
+                      {item.question}
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-neutral-700 md:text-base md:leading-relaxed">
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
