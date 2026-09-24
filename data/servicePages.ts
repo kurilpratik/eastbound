@@ -20,6 +20,12 @@ export const servicePages: FeatureBlock[] = [
       "Private guides, drivers and exclusive experiences",
       "Dedicated senior team members and concierge support throughout the journey",
     ],
+    faqs: [
+      {
+        q: "What is a luxury FIT itinerary?",
+        a: "A luxury FIT (Free Independent Traveller) itinerary is a fully tailored, private journey built around one traveller or party, rather than a fixed group tour.",
+      },
+    ],
     cta: "Enquire About Luxury FIT",
     image: "/images/services/luxury.jpg",
   },
@@ -36,6 +42,12 @@ export const servicePages: FeatureBlock[] = [
       "Venue sourcing across hotels, palaces and unique spaces",
       "Creative theming, entertainment and gala events",
       "Dedicated on-ground teams for groups of any size",
+    ],
+    faqs: [
+      {
+        q: "Does Eastbound handle MICE programmes in the UAE as well as India?",
+        a: "Yes - Eastbound's MICE-ready venues and logistics span both the sub-continent and the UAE, including Dubai and Abu Dhabi.",
+      },
     ],
     cta: "Enquire About Incentives & Meetings",
     image: "/images/services/meetings.jpg",
@@ -54,6 +66,12 @@ export const servicePages: FeatureBlock[] = [
       "Full duty-of-care planning and risk management",
       "Group logistics for schools, universities and academic institutions",
     ],
+    faqs: [
+      {
+        q: "Does Eastbound handle duty-of-care planning for student groups?",
+        a: "Yes - full duty-of-care planning and risk management is built into every educational travel programme.",
+      },
+    ],
     cta: "Enquire About Educational Travel",
     image: "/images/services/education.jpg",
   },
@@ -70,6 +88,12 @@ export const servicePages: FeatureBlock[] = [
       "Heritage and history-focused group tours",
       "Wellness and yoga retreats",
       "Custom themes built around any shared interest",
+    ],
+    faqs: [
+      {
+        q: "Can Eastbound build a custom group programme around a theme not listed on the site?",
+        a: "Yes - special interest programmes are built around whatever the group's shared passion is, beyond the standard culinary, wellness and heritage themes. It could be textiles, fashion, Hyrox, Marathon, IronMan or just an extended marathon shopping expedition.",
+      },
     ],
     cta: "Build a Special Interest Programme",
     image: "/images/services/camp.jpg",

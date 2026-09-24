@@ -34,6 +34,7 @@ const ServicesPage = () => {
             tagline={s.tagline}
             intro={s.intro}
             points={s.points}
+            faqs={s.faqs}
             cta={s.cta}
             image={s.image}
             flip={i % 2 === 1}

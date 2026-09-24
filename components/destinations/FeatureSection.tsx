@@ -12,6 +12,7 @@ type Props = {
   /** Either simple bullet strings or label/detail pairs */
   points?: string[];
   highlights?: { label: string; detail: string }[];
+  faqs?: { q: string; a: string }[];
   flip?: boolean;
   tinted?: boolean;
 };
@@ -26,6 +27,7 @@ export function FeatureSection({
   image,
   points,
   highlights,
+  faqs,
   flip = false,
   tinted = false,
 }: Props) {
@@ -92,8 +94,29 @@ export function FeatureSection({
               ))}
             </ul>
 
+            {faqs && faqs.length > 0 && (
+              <div className="border-border/70 mt-12 max-w-2xl border-t pt-8">
+                <p className="eyebrow text-blue-light mb-6">FAQ</p>
+                <div className="space-y-6">
+                  {faqs.map((item) => (
+                    <div
+                      key={item.q}
+                      className="border-border/70 border-b pb-6 last:border-b-0 last:pb-0"
+                    >
+                      <p className="text-blue-dark font-serif text-lg md:text-xl">
+                        {item.q}
+                      </p>
+                      <p className="text-muted-foreground mt-3 leading-relaxed font-light">
+                        {item.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <Link
-              href={`/destinations/${id}`}
+              href={`/contact`}
               className="group border-primary text-primary hover:bg-primary hover:text-primary-foreground mt-10 inline-flex items-center gap-3 border px-7 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-colors"
             >
               {cta}
