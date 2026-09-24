@@ -112,7 +112,7 @@ export const allDestinations: DestinationDetail[] = [
     id: "nepal",
     name: "Nepal",
     about:
-      "Nepal blends dramatic mountain landscapes with deeply rooted spiritual traditions and warm, welcoming hospitality. Whether travellers are looking for a classic Himalayan trek, a cultural circuit, or a wildlife escape, the country offers a wide range of mountain and village experiences.",
+      "Eastbound builds everything from gentle cultural circuits in the Kathmandu Valley to serious Himalayan trekking and mountain-flight experiences, plus jungle safaris in Chitwan and Bardia and adventure travel - white-water rafting, mountain flights, paragliding.",
     image: "/images/destinations/nepal/1.jpg",
     highlightPlaces: [
       {
@@ -153,7 +153,7 @@ export const allDestinations: DestinationDetail[] = [
     id: "bhutan",
     name: "Bhutan",
     about:
-      "Bhutan is defined by its measured pace, mountain serenity, and deep cultural identity. The kingdom offers a rare blend of monastery visits, gentle trekking, wellness, and sustainable luxury, all shaped by a philosophy that values experience over excess.",
+      "Because Bhutan runs the world’s most sustainable, slow and considered tourism, Eastbound manages every permit and logistical detail so travellers can focus on cultural immersion (dzongs, monasteries, festivals), trekking from short scenic walks to multi-day Himalayan routes, traditional Bhutanese wellness, and green travel woven into every itinerary.",
     image: "/images/destinations/bhutan/1.jpg",
     highlightPlaces: [
       {
@@ -194,7 +194,7 @@ export const allDestinations: DestinationDetail[] = [
     id: "srilanka",
     name: "Sri Lanka",
     about:
-      "Sri Lanka is compact, varied, and endlessly rewarding. Within a short journey, travellers can move from ancient cultural capitals and tea estates to coastal escapes and wildlife-rich national parks, creating a balanced itinerary with contrast at every stop.",
+      "Sri Lanka’s compact geography lets Eastbound move travellers from the cultural triangle&#39;s ancient cities and cave temples to leopard and elephant safaris in Yala and Wilpattu, highland tea estates and scenic rail journeys, and coastal escapes on the south and east coasts - often within a single itinerary.",
     image: "/images/destinations/srilanka/1.jpg",
     highlightPlaces: [
       {
@@ -236,7 +236,7 @@ export const allDestinations: DestinationDetail[] = [
     id: "uae",
     name: "UAE",
     about:
-      "The UAE brings an elegant, contemporary layer to the region, combining sleek city stays, desert adventure, and event-ready infrastructure. It works beautifully as a luxury stopover or as a polished counterpoint to more heritage-heavy itineraries in South Asia.",
+      "The UAE gives Eastbound a contemporary counterpoint to its sub-continent destinations: luxury city breaks in Dubai and Abu Dhabi, desert experiences (overnight camps, dune adventures, falconry), MICE-ready venues and logistics for meetings and incentive groups, and stopover programmes designed to connect with sub-continent itineraries.",
     image: "/images/destinations/uae/1.jpg",
     highlightPlaces: [
       {
