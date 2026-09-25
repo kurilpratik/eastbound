@@ -1,4 +1,5 @@
 import { Button, type ButtonProps } from "@/components/ui/Button";
+import { MuxBackgroundVideo } from "@mux/mux-background-video/react";
 
 type SubHeroButton = {
   label: string;
@@ -13,9 +14,7 @@ type SubHeroEyebrow = {
 type SubHeroProps = {
   title: string;
   description?: string;
-  backgroundImage?: string;
   backgroundVideo?: string;
-  imageAlt?: string;
   eyebrow?: string | SubHeroEyebrow;
   button?: SubHeroButton;
 };
@@ -23,9 +22,7 @@ type SubHeroProps = {
 export default function SubHero({
   title,
   description,
-  backgroundImage,
   backgroundVideo,
-  imageAlt = "Hero background",
   eyebrow,
   button,
 }: SubHeroProps) {
@@ -33,24 +30,14 @@ export default function SubHero({
     <section className="relative isolate h-[75vh] min-h-105 overflow-hidden bg-slate-950">
       <div className="absolute inset-0">
         {backgroundVideo ? (
-          <video
-            className="h-full w-full object-cover"
-            src={backgroundVideo}
-            poster={backgroundImage}
-            autoPlay
-            muted
-            loop
-            playsInline
+          <MuxBackgroundVideo
+            src={`https://stream.mux.com/${backgroundVideo}.m3u8`}
           >
-            <track kind="captions" />
-          </video>
-        ) : backgroundImage ? (
-          <div
-            aria-label={imageAlt}
-            role="img"
-            className="h-full w-full bg-cover bg-center"
-            style={{ backgroundImage: `url("${backgroundImage}")` }}
-          />
+            <img
+              src={`https://image.mux.com/${backgroundVideo}/thumbnail.webp?time=0`}
+              alt={description ?? "Hero background"}
+            />
+          </MuxBackgroundVideo>
         ) : (
           <div className="h-full w-full bg-[radial-gradient(circle_at_top,_rgba(151,180,222,0.35),_transparent_30%),linear-gradient(135deg,_#132436_0%,_#0f172a_52%,_#020617_100%)]" />
         )}

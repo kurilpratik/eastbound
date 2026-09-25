@@ -7,7 +7,7 @@ const SriLankaPage = () => {
       <SubHero
         title="Sri Lanka"
         description="Sri Lanka is an island country in South Asia, located in the Indian Ocean. It is known for its diverse landscapes, rich cultural heritage, and unique wildlife."
-        backgroundVideo="/videos/SriLanka.mp4"
+        backgroundVideo="Pj00J01gQoe2K7rCFYTEw02iEOYbuxM7usCAbe01M8BGNrA"
         eyebrow={{
           text: "< Destinations",
           href: "/destinations",

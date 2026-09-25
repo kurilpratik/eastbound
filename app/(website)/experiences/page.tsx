@@ -32,7 +32,7 @@ const ExperiencesPage = () => {
         eyebrow="Curated Experiences"
         title="Experiences Designed Around You  "
         description="Travel becomes memorable when it’s built around shared interests. Whether it's photography, birding, walking trails or cultural immersion, we create specialist journeys that connect travellers with authentic experiences — led by experts who share the passion. "
-        backgroundVideo="/videos/exp.mp4"
+        backgroundVideo="S2RRL3V75jl9QogjjtWZLcNpTJTVqy02laQa1FhLSixI"
       />
       <main className="bg-background text-foreground">
         {/* Numbered ledger strip */}

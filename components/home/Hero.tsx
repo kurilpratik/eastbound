@@ -2,10 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { MuxBackgroundVideo } from "@mux/mux-background-video/react";
 import { Button } from "../ui/Button";
 import { MoveRight } from "lucide-react";
 
-const heroVideos = ["/videos/h2.mp4", "/videos/h1.mp4", "/videos/h3.mp4"];
+const videoURL = "https://stream.mux.com/";
+const videoIDs = [
+  "S2RRL3V75jl9QogjjtWZLcNpTJTVqy02laQa1FhLSixI",
+  "9022vXqxureSKaBH7UZ00WYFRULLTuB8WbaVrOxSCFiD4",
+  "SZJLzywFHSO9irdzrbbzpw2PLgy9msG8nOMb02L2xQSc",
+];
+const videoExtension = ".m3u8";
+
+const heroVideos = [
+  `${videoURL}${videoIDs[0]}${videoExtension}`,
+  `${videoURL}${videoIDs[1]}${videoExtension}`,
+  `${videoURL}${videoIDs[2]}${videoExtension}`,
+];
 
 const Hero = () => {
   const router = useRouter();
@@ -22,19 +35,22 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative isolate flex h-screen min-h-screen w-full items-end overflow-hidden">
-      <video
-        key={heroVideos[activeVideoIndex]}
-        autoPlay
-        muted
-        playsInline
-        className="absolute inset-0 -z-20 h-full w-full scale-110 object-cover object-center"
-      >
-        <source src={heroVideos[activeVideoIndex]} type="video/mp4" />
-      </video>
+    <section className="relative isolate h-screen min-h-screen w-full overflow-hidden">
+      <div className="absolute inset-0 -z-20 h-full w-full">
+        <MuxBackgroundVideo
+          src={heroVideos[activeVideoIndex]}
+          className="h-full w-full"
+        >
+          <img
+            src={`https://image.mux.com/${videoIDs[activeVideoIndex]}/thumbnail.webp?time=0`}
+            alt="Hero background"
+            className="h-full w-full object-cover object-center"
+          />
+        </MuxBackgroundVideo>
+      </div>
       <div className="absolute inset-0 -z-10 bg-linear-to-t from-black/75 via-black/25 to-black/10" />
 
-      <div className="container w-full pt-32 pb-10 sm:pt-36 sm:pb-16 lg:pb-24">
+      <div className="relative z-10 container flex h-full w-full items-end pt-32 pb-10 sm:pt-36 sm:pb-16 lg:pb-24">
         <div className="max-w-3xl">
           {/* slide-indicators  */}
           <div
