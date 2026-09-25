@@ -34,7 +34,7 @@ const AgentBoard = () => {
               </p>
               <Button asChild>
                 <Link
-                  href="https://www.travolgo.com/home"
+                  href="/eastbound-agent-collective.html"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Open Eastbound Agent Collective on Travolgo"
