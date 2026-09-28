@@ -14,7 +14,7 @@ const NepalPage = () => {
         }}
         button={{
           label: "Download our Nepal Profile",
-          href: "https://drive.google.com/file/d/1a9ibZnTLNt6w6F2UGf-AA5AOj2DZzibV/view?usp=sharing",
+          href: "https://drive.google.com/file/d/18N9rsOdmA8ovUGgfp2D9Tf_jqjjunxgI/view?usp=sharing",
           variant: "default",
           size: "lg",
         }}

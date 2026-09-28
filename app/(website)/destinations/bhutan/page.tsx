@@ -7,7 +7,7 @@ const BhutanPage = () => {
       <SubHero
         title="Bhutan"
         description="Bhutan is a landlocked country in South Asia, located in the Eastern Himalayas. It is known for its stunning landscapes, rich cultural heritage, and commitment to Gross National Happiness."
-        backgroundVideo="4uW4rbwb3LuArhd7Jg02t9URL8yJG1izEYfkLPHT7bxI"
+        backgroundVideo="fFpZfzxVf6bmyAJF9PGSiVUH8JXpS65iZvoM7VSx02gY"
         eyebrow={{
           text: "< Destinations",
           href: "/destinations",

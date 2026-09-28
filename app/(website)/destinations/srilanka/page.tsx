@@ -12,6 +12,12 @@ const SriLankaPage = () => {
           text: "< Destinations",
           href: "/destinations",
         }}
+        button={{
+          label: "Download our Sri Lanka Profile",
+          href: "https://drive.google.com/file/d/1lQ_8CRcBhpXXS0HptI8XgiwdGdhWziJA/view?usp=sharing",
+          variant: "default",
+          size: "lg",
+        }}
       />
       <DestinationSpace destinationId="srilanka" />
     </div>
