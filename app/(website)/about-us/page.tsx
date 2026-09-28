@@ -8,6 +8,7 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { Button } from "@/components/ui/Button";
 import { aboutUsHero, aboutUsStory, leaders, team } from "@/data/aboutUs";
 import { site } from "@/data/site";
+import Sustainability from "@/components/Sustainability";
 
 const AboutUs = () => {
   const [expandedLeaders, setExpandedLeaders] = useState<
@@ -267,6 +268,8 @@ const AboutUs = () => {
             </div>
           </div>
         </section>
+
+        <Sustainability />
 
         <section className="bg-blue-light text-primary-foreground py-20 md:py-28">
           <div className="container">

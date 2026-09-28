@@ -32,7 +32,6 @@ export const financialRiskAssurance = {
     "Our approach is built around transparency, responsible financial practices and long-standing relationships with trusted travel partners across the region.",
     "We provide clear documentation around your booking, agreed inclusions and payment schedules, while our experienced team remains available throughout the planning and travel process.",
     "Our established presence in the region means that your journey is backed not only by carefully selected partners, but by a team with the local knowledge and relationships to manage the unexpected.",
-    ,
   ],
 };
 
