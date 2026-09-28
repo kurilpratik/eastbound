@@ -8,8 +8,6 @@ import {
   offices,
   programmeTypes,
   destinationOptions,
-  paymentPolicy,
-  contactSignature,
   financialRiskAssurance,
   financialRiskAssuranceStatement,
 } from "@/data/contact";
