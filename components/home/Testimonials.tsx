@@ -24,7 +24,7 @@ export function Testimonials() {
           <blockquote className="min-h-[240px] md:min-h-[200px]">
             <p
               key={`${t.author}-${t.role}`}
-              className="reveal is-visible font-serif text-2xl leading-[1.25] text-white italic md:text-4xl lg:text-5xl"
+              className="reveal is-visible font-serif text-2xl leading-[1.25] text-white italic"
             >
               &ldquo;{t.quote}&rdquo;
             </p>

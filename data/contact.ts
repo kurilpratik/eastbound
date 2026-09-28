@@ -24,16 +24,20 @@ export const destinationOptions = [
 
 export const offices = site.offices;
 
-export const paymentPolicy = {
-  eyebrow: "Payment policy",
-  title: "Clear terms, before anything is confirmed",
+export const financialRiskAssurance = {
+  eyebrow: "FINANCIAL RISK ASSURANCE",
+  title: "Travel with Confidence",
   points: [
-    "A deposit confirms every programme; the balance is due prior to arrival as set out in your proposal.",
-    "All quotations are issued in writing with inclusions, exclusions and cancellation terms stated up front.",
-    "Payments are accepted by bank transfer to the relevant Eastbound entity — India, UAE or Sri Lanka.",
-    "Any revision to dates, party size or services is re-quoted in writing before it is actioned.",
+    "When you entrust Eastbound with your journey, you are entrusting us with more than the details of a holiday.",
+    "Our approach is built around transparency, responsible financial practices and long-standing relationships with trusted travel partners across the region.",
+    "We provide clear documentation around your booking, agreed inclusions and payment schedules, while our experienced team remains available throughout the planning and travel process.",
+    "Our established presence in the region means that your journey is backed not only by carefully selected partners, but by a team with the local knowledge and relationships to manage the unexpected.",
+    ,
   ],
 };
+
+export const financialRiskAssuranceStatement =
+  "Your journey should feel seamless from the first conversation to the moment you return home.";
 
 export const contactSignature =
   "Eastbound — Twenty Years of Local Knowledge, Global Standards, Extraordinary Journeys.";

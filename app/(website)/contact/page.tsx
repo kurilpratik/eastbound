@@ -10,8 +10,11 @@ import {
   destinationOptions,
   paymentPolicy,
   contactSignature,
+  financialRiskAssurance,
+  financialRiskAssuranceStatement,
 } from "@/data/contact";
 import { site } from "@/data/site";
+import BrandLogos from "@/components/BrandLogos";
 
 const ContactPage = () => {
   const [sent, setSent] = useState(false);
@@ -60,7 +63,14 @@ const ContactPage = () => {
                   <dt className="text-primary-foreground/50 text-[0.65rem] tracking-[0.3em] uppercase">
                     Telephone
                   </dt>
-                  <dd className="mt-2 font-serif text-xl">{site.phone}</dd>
+                  <dd className="mt-2 font-serif text-xl">
+                    <a
+                      href={`tel:${site.phone.replace(/[\s()]/g, "")}`}
+                      className="hover:text-accent transition-colors"
+                    >
+                      {site.phone}
+                    </a>
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-primary-foreground/50 text-[0.65rem] tracking-[0.3em] uppercase">
@@ -101,7 +111,7 @@ const ContactPage = () => {
                 }}
                 className="grid gap-x-8 gap-y-7 sm:grid-cols-2"
               >
-                <Field label="Name" htmlFor="c-name">
+                <Field label="Name *" htmlFor="c-name">
                   <input
                     id="c-name"
                     required
@@ -118,7 +128,7 @@ const ContactPage = () => {
                     placeholder="Company / agency"
                   />
                 </Field>
-                <Field label="Email" htmlFor="c-email">
+                <Field label="Email *" htmlFor="c-email">
                   <input
                     id="c-email"
                     required
@@ -219,11 +229,11 @@ const ContactPage = () => {
                       ? "md:col-span-6"
                       : i === 1
                         ? "md:col-span-6"
-                        : "md:col-span-7 md:col-start-4"
+                        : "md:col-span-6"
                   }
                 >
                   <div className="card-frame group bg-background border-border/70 h-full border p-8 md:p-10">
-                    <p className="text-accent text-[0.65rem] tracking-[0.3em] uppercase">
+                    <p className="text-blue-light text-[0.65rem] tracking-[0.3em] uppercase">
                       {o.country}
                     </p>
                     <h3 className="text-primary group-hover:text-accent mt-4 font-serif text-2xl transition-colors md:text-3xl">
@@ -265,15 +275,15 @@ const ContactPage = () => {
           <div className="container grid gap-12 lg:grid-cols-12 lg:gap-20">
             <Reveal className="lg:col-span-5">
               <p className="eyebrow text-blue-dark mb-4">
-                {paymentPolicy.eyebrow}
+                {financialRiskAssurance.eyebrow}
               </p>
               <h2 className="font-serif text-3xl leading-[1.08] md:text-4xl">
-                {paymentPolicy.title}
+                {financialRiskAssurance.title}
               </h2>
             </Reveal>
             <div className="lg:col-span-6 lg:col-start-7">
               <ul className="border-t border-white/15">
-                {paymentPolicy.points.map((p, i) => (
+                {financialRiskAssurance.points.map((p, i) => (
                   <Reveal key={p.slice(0, 20)} delay={i * 80} as="div">
                     <li className="group flex items-baseline gap-6 border-b border-white/15 py-6">
                       <span className="text-blue-dark font-serif">
@@ -287,11 +297,13 @@ const ContactPage = () => {
                 ))}
               </ul>
               <p className="text-primary-foreground/90 mt-12 font-serif text-xl italic md:text-2xl">
-                {contactSignature}
+                {financialRiskAssuranceStatement}
               </p>
             </div>
           </div>
         </section>
+
+        <BrandLogos />
 
         <style>{`
         .contact-input {

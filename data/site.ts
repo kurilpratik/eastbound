@@ -4,7 +4,7 @@ export const site = {
   description:
     "Eastbound crafts private, luxurious travel experiences across Bhutan, Nepal, India, Sri Lanka and the UAE — designed for the world's most discerning travellers.",
   email: "info@eastboundgroup.com",
-  phone: "+91 124 421 7800",
+  phone: "+91 9971478225",
   address: "898 Udyog Vihar, Phase 1, Gurgaon, Haryana, India",
   social: {
     instagram: "https://instagram.com",
@@ -23,8 +23,8 @@ export const site = {
       country: "India",
       label: "India Head Office",
       lines: ["898 Udyog Vihar, Phase 1", "Gurgaon, Haryana"],
-      phone: "+91 124 421 7800",
-      email: "info@eastboundgroup.com",
+      phone: "+91 9971478225",
+      email: "disha@eastboundgroup.com",
     },
     {
       country: "UAE",
@@ -35,7 +35,7 @@ export const site = {
         "PO Box 114551, Dubai, United Arab Emirates",
       ],
       phone: "+971 55 630 6185",
-      email: "info@eastboundgroup.com",
+      email: "smehta@eastboundgroup.com",
     },
     {
       country: "Sri Lanka",
@@ -43,6 +43,20 @@ export const site = {
       lines: ["20 Center Road, Jayanthipura", "Battaramulla, Sri Lanka"],
       phone: "+94 71 04 22 534",
       email: "srilanka@eastboundgroup.com",
+    },
+    {
+      country: "Bhutan",
+      label: "Eastbound Bhutan",
+      lines: ["P/O Box 848, Kewang Building,", "Norzin Lam Thimpu, Bhutan"],
+      phone: "+124-421- 7800",
+      email: "bhutan@eastboundgroup.com",
+    },
+    {
+      country: "Nepal",
+      label: "Eastbound Nepal",
+      lines: ["525, Ranibari, Samakhushi", "Kathmandu-3, Nepal"],
+      phone: "+977 1 4350108",
+      email: "nepal@eastboundgroup.com",
     },
   ],
 } as const;
