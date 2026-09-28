@@ -32,7 +32,6 @@ export default function SubHero({
         {backgroundVideo ? (
           <MuxBackgroundVideo
             src={`https://stream.mux.com/${backgroundVideo}.m3u8`}
-            preload="metadata"
           >
             <img
               src={`https://image.mux.com/${backgroundVideo}/thumbnail.webp?time=0`}

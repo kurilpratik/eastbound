@@ -38,6 +38,7 @@ const Hero = () => {
     <section className="relative isolate h-screen min-h-screen w-full overflow-hidden">
       <div className="absolute inset-0 -z-20 h-full w-full">
         <MuxBackgroundVideo
+          key={heroVideos[activeVideoIndex]}
           src={heroVideos[activeVideoIndex]}
           className="h-full w-full"
         >
