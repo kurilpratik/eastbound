@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
-import Button from '../ui/Button'
+import React, { useState } from "react";
+import { Button } from "../ui/Button";
 
 interface Props {
-  subject: string
+  subject: string;
 }
 
 export default function DetailedEventForm({ subject }: Props) {
-  const [name, setName] = useState('')
-  const [company, setCompany] = useState('')
-  const [email, setEmail] = useState('')
-  const [eventType, setEventType] = useState('Incentive')
-  const [destinations, setDestinations] = useState('')
-  const [groupSize, setGroupSize] = useState('')
-  const [dates, setDates] = useState('')
-  const [datesFlexible, setDatesFlexible] = useState('No')
-  const [budget, setBudget] = useState('')
-  const [interests, setInterests] = useState('')
-  const [details, setDetails] = useState('')
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [eventType, setEventType] = useState("Incentive");
+  const [destinations, setDestinations] = useState("");
+  const [groupSize, setGroupSize] = useState("");
+  const [dates, setDates] = useState("");
+  const [datesFlexible, setDatesFlexible] = useState("No");
+  const [budget, setBudget] = useState("");
+  const [interests, setInterests] = useState("");
+  const [details, setDetails] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     const payload = {
       subject,
       name,
@@ -33,23 +33,23 @@ export default function DetailedEventForm({ subject }: Props) {
       budget,
       interests,
       details,
-    }
+    };
     // Replace with real submit logic (API call, form handler, etc.)
-    console.log('DetailedEventForm submit', payload)
-    alert('Form submitted — check console for payload')
+    console.log("DetailedEventForm submit", payload);
+    alert("Form submitted — check console for payload");
     // reset
-    setName('')
-    setCompany('')
-    setEmail('')
-    setEventType('Incentive')
-    setDestinations('')
-    setGroupSize('')
-    setDates('')
-    setDatesFlexible('No')
-    setBudget('')
-    setInterests('')
-    setDetails('')
-  }
+    setName("");
+    setCompany("");
+    setEmail("");
+    setEventType("Incentive");
+    setDestinations("");
+    setGroupSize("");
+    setDates("");
+    setDatesFlexible("No");
+    setBudget("");
+    setInterests("");
+    setDetails("");
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -67,7 +67,9 @@ export default function DetailedEventForm({ subject }: Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Company or organisation</label>
+        <label className="block text-sm font-medium">
+          Company or organisation
+        </label>
         <input
           value={company}
           onChange={(e) => setCompany(e.target.value)}
@@ -104,7 +106,9 @@ export default function DetailedEventForm({ subject }: Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Preferred destination(s) or "Open to suggestions"</label>
+        <label className="block text-sm font-medium">
+          Preferred destination(s) or "Open to suggestions"
+        </label>
         <input
           value={destinations}
           onChange={(e) => setDestinations(e.target.value)}
@@ -114,7 +118,9 @@ export default function DetailedEventForm({ subject }: Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Approximate group size</label>
+        <label className="block text-sm font-medium">
+          Approximate group size
+        </label>
         <input
           value={groupSize}
           onChange={(e) => setGroupSize(e.target.value)}
@@ -124,7 +130,9 @@ export default function DetailedEventForm({ subject }: Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Preferred dates or season</label>
+        <label className="block text-sm font-medium">
+          Preferred dates or season
+        </label>
         <input
           value={dates}
           onChange={(e) => setDates(e.target.value)}
@@ -134,29 +142,33 @@ export default function DetailedEventForm({ subject }: Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Are your dates flexible?</label>
+        <label className="block text-sm font-medium">
+          Are your dates flexible?
+        </label>
         <div className="mt-1 flex gap-4">
           <label>
             <input
               type="radio"
-              checked={datesFlexible === 'Yes'}
-              onChange={() => setDatesFlexible('Yes')}
-            />{' '}
+              checked={datesFlexible === "Yes"}
+              onChange={() => setDatesFlexible("Yes")}
+            />{" "}
             Yes
           </label>
           <label>
             <input
               type="radio"
-              checked={datesFlexible === 'No'}
-              onChange={() => setDatesFlexible('No')}
-            />{' '}
+              checked={datesFlexible === "No"}
+              onChange={() => setDatesFlexible("No")}
+            />{" "}
             No
           </label>
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Estimated budget (optional)</label>
+        <label className="block text-sm font-medium">
+          Estimated budget (optional)
+        </label>
         <input
           value={budget}
           onChange={(e) => setBudget(e.target.value)}
@@ -166,7 +178,9 @@ export default function DetailedEventForm({ subject }: Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Experiences or venues that interest you (optional)</label>
+        <label className="block text-sm font-medium">
+          Experiences or venues that interest you (optional)
+        </label>
         <input
           value={interests}
           onChange={(e) => setInterests(e.target.value)}
@@ -176,7 +190,9 @@ export default function DetailedEventForm({ subject }: Props) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Tell us more about what you're planning</label>
+        <label className="block text-sm font-medium">
+          Tell us more about what you're planning
+        </label>
         <textarea
           value={details}
           onChange={(e) => setDetails(e.target.value)}
@@ -189,5 +205,5 @@ export default function DetailedEventForm({ subject }: Props) {
         <Button type="submit">Send enquiry</Button>
       </div>
     </form>
-  )
+  );
 }

@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
-import Button from '../ui/Button'
+import React, { useState } from "react";
+import { Button } from "../ui/Button";
 
 interface Props {
-  subject: string
+  subject: string;
 }
 
 export default function SimpleEventForm({ subject }: Props) {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [need, setNeed] = useState('')
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [need, setNeed] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const payload = { subject, name, email, need }
+    e.preventDefault();
+    const payload = { subject, name, email, need };
     // Replace with real submit logic (API call, form handler, etc.)
-    console.log('SimpleEventForm submit', payload)
-    alert('Form submitted — check console for payload')
-    setName('')
-    setEmail('')
-    setNeed('')
-  }
+    console.log("SimpleEventForm submit", payload);
+    alert("Form submitted — check console for payload");
+    setName("");
+    setEmail("");
+    setNeed("");
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -63,5 +63,5 @@ export default function SimpleEventForm({ subject }: Props) {
         <Button type="submit">Send enquiry</Button>
       </div>
     </form>
-  )
+  );
 }
