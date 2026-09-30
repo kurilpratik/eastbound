@@ -171,7 +171,7 @@ const Navbar = () => {
               }`}
             >
               <span className="transition-transform duration-300 group-hover:translate-x-[-2px]">
-                Agent Collective
+                Agent<span className="hidden sm:inline"> Collective</span>
               </span>
               <ArrowUpRight className="h-0 w-0 translate-x-2 opacity-0 transition-all duration-300 ease-out group-hover:h-3.5 group-hover:w-3.5 group-hover:translate-x-0 group-hover:opacity-100 sm:group-hover:h-4 sm:group-hover:w-4" />
             </Link>
@@ -184,7 +184,7 @@ const Navbar = () => {
               }`}
             >
               <span className="transition-transform duration-300 group-hover:translate-x-[-2px]">
-                Event Exchange
+                Events<span className="hidden sm:inline"> Exchange</span>
               </span>
               <ArrowUpRight className="h-0 w-0 translate-x-2 opacity-0 transition-all duration-300 ease-out group-hover:h-3.5 group-hover:w-3.5 group-hover:translate-x-0 group-hover:opacity-100 sm:group-hover:h-4 sm:group-hover:w-4" />
             </Link>
@@ -243,18 +243,18 @@ const Navbar = () => {
 
             <div className="flex flex-col gap-3 text-sm tracking-wider text-white/65 uppercase">
               <Link
-                href="/agents-hub"
+                href="/agent"
                 onClick={() => setIsMenuOpen(false)}
                 className="flex items-center gap-2 hover:text-white"
               >
                 Agent Collective <ArrowUpRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/events-hub"
+                href="/events"
                 onClick={() => setIsMenuOpen(false)}
                 className="flex items-center gap-2 hover:text-white"
               >
-                Event Exchange <ArrowUpRight className="h-4 w-4" />
+                Events Exchange <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
