@@ -4,7 +4,7 @@ export const site = {
   description:
     "Eastbound crafts private, luxurious travel experiences across Bhutan, Nepal, India, Sri Lanka and the UAE — designed for the world's most discerning travellers.",
   email: "info@eastboundgroup.com",
-  phone: "+91 9971478225",
+  phone: "+91 9650274785",
   address: "898 Udyog Vihar, Phase 1, Gurgaon, Haryana, India",
   social: {
     instagram: "https://instagram.com",
@@ -23,7 +23,7 @@ export const site = {
       country: "India",
       label: "India Head Office",
       lines: ["898 Udyog Vihar, Phase 1", "Gurgaon, Haryana"],
-      phone: "+91 9971478225",
+      phone: "+91 9650274785",
       email: "disha@eastboundgroup.com",
     },
     {

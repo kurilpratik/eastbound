@@ -14,7 +14,7 @@ const UAEPage = () => {
         }}
         button={{
           label: "Download our UAE Profile",
-          href: "https://drive.google.com/file/d/15vfmtnRgHV8QyD79_lilozmS96tUiIiG/view?usp=sharing",
+          href: "/pdfs/destinations/UAE.pdf",
           variant: "default",
           size: "lg",
         }}

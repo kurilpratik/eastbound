@@ -14,7 +14,7 @@ const SriLankaPage = () => {
         }}
         button={{
           label: "Download our Sri Lanka Profile",
-          href: "https://drive.google.com/file/d/1lQ_8CRcBhpXXS0HptI8XgiwdGdhWziJA/view?usp=sharing",
+          href: "/pdfs/destinations/SriLanka.pdf",
           variant: "default",
           size: "lg",
         }}

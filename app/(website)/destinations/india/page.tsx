@@ -14,7 +14,7 @@ const IndiaPage = () => {
         }}
         button={{
           label: "Download our India Profile",
-          href: "https://drive.google.com/file/d/1BWSRpBShhr44-Kcmjtkl7RpvWM_TKD8q/view?usp=sharing",
+          href: "/pdfs/destinations/India.pdf",
           variant: "default",
           size: "lg",
         }}

@@ -14,7 +14,7 @@ const BhutanPage = () => {
         }}
         button={{
           label: "Download our Bhutan Profile",
-          href: "https://drive.google.com/file/d/1a9ibZnTLNt6w6F2UGf-AA5AOj2DZzibV/view?usp=sharing",
+          href: "/pdfs/destinations/Bhutan.pdf",
           variant: "default",
           size: "lg",
         }}
