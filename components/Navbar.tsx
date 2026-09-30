@@ -153,10 +153,10 @@ const Navbar = () => {
               <Image
                 src={isScrolled ? "/logo/logo.png" : "/logo/logo-white.png"}
                 alt="Eastbound"
-                width={140}
-                height={100}
+                width={180}
+                height={128}
                 priority
-                className="h-auto w-25 sm:w-32"
+                className="h-auto w-32 sm:w-40"
               />
             </Link>
           </div>
@@ -208,10 +208,10 @@ const Navbar = () => {
             <Image
               src="/logo/logo-white.png"
               alt="Eastbound"
-              width={140}
-              height={100}
+              width={180}
+              height={128}
               priority
-              className="h-auto w-25 sm:w-32"
+              className="h-auto w-32 sm:w-40"
             />
             <button
               type="button"

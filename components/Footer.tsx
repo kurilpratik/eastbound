@@ -123,7 +123,7 @@ export function Footer() {
         <img
           src={"/logo/logo-white.png"}
           alt="Eastbound"
-          className="h-9 w-auto opacity-90 brightness-0 invert"
+          className="h-9 w-auto"
         />
         <nav className="flex flex-wrap gap-8">
           {site.nav.map((n) => (
