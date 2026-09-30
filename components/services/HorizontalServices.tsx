@@ -53,8 +53,8 @@ export function HorizontalServices({ items }: { items: FeatureBlock[] }) {
           <div className="container mb-10">
             <p className="eyebrow text-blue-light mb-3">Our services</p>
             <h2 className="text-blue-dark font-serif text-4xl leading-[1.05] xl:text-5xl">
-              Scroll to explore{" "}
-              <span className="text-accent">every service.</span>
+              Scroll to explore.{" "}
+              {/* <span className="text-accent">every service.</span> */}
             </h2>
           </div>
           <div
@@ -92,7 +92,7 @@ function Card({
 }) {
   return (
     <article
-      className={`card-frame group relative h-[26rem] overflow-hidden rounded-2xl ${className}`}
+      className={`card-frame group relative h-[26rem] overflow-hidden ${className}`}
     >
       <img
         src={item.image}
