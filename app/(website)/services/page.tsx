@@ -37,6 +37,7 @@ const ServicesPage = () => {
             faqs={s.faqs}
             cta={s.cta}
             image={s.image}
+            href="/contact"
             flip={i % 2 === 1}
             tinted={i % 2 === 1}
           />
@@ -89,7 +90,7 @@ const ServicesPage = () => {
         </section> */}
 
         {/* Awards & memberships */}
-        <section className="bg-secondary/60 py-20 md:py-28">
+        {/* <section className="bg-secondary/60 py-20 md:py-28">
           <div className="container">
             <Reveal className="mb-14 max-w-2xl">
               <p className="eyebrow mb-4">Awards & partnerships</p>
@@ -139,7 +140,7 @@ const ServicesPage = () => {
               </div>
             </Reveal>
           </div>
-        </section>
+        </section> */}
 
         <CtaBand
           eyebrow="Work with us"

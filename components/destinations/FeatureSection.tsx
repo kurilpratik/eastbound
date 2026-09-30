@@ -15,6 +15,8 @@ type Props = {
   faqs?: { q: string; a: string }[];
   flip?: boolean;
   tinted?: boolean;
+  /** Override CTA link; defaults to `/destinations/${id}` */
+  href?: string;
 };
 
 export function FeatureSection({
@@ -30,6 +32,7 @@ export function FeatureSection({
   faqs,
   flip = false,
   tinted = false,
+  href,
 }: Props) {
   return (
     <section
@@ -116,7 +119,7 @@ export function FeatureSection({
             )}
 
             <Link
-              href={`/destinations/${id}`}
+              href={href ?? `/destinations/${id}`}
               className="group border-primary text-primary hover:bg-primary hover:text-primary-foreground mt-10 inline-flex items-center gap-3 border px-7 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-colors"
             >
               {cta}
