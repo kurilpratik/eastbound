@@ -7,7 +7,7 @@ const UAEPage = () => {
       <SubHero
         title="United Arab Emirates"
         description="United Arab Emirates is a country in Western Asia, located on the southeastern corner of the Arabian Peninsula. It is known for its modern architecture, luxury shopping, and vibrant cultural scene."
-        backgroundVideo="/Xs4ztoyiKFNU402WaHxhGG9akn02MRyE3BGb1kYzOesus"
+        backgroundVideo="Xs4ztoyiKFNU402WaHxhGG9akn02MRyE3BGb1kYzOesus"
         eyebrow={{
           text: "< Destinations",
           href: "/destinations",
