@@ -15,7 +15,8 @@ export const site = {
     { label: "Destinations", href: "/destinations" },
     { label: "Experiences", href: "/experiences" },
     { label: "Services", href: "/services" },
-    { label: "Journal", href: "/newsletters" },
+    { label: "Newsletters", href: "/newsletters" },
+    { label: "About Us", href: "/about-us" },
     { label: "Contact", href: "/contact" },
   ],
   offices: [

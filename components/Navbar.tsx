@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, X } from "lucide-react";
-import { navData } from "@/data/navData";
+import { site } from "@/data/site";
 
 const MenuMark = ({ isScrolled = false }: { isScrolled?: boolean }) => (
   // <svg
@@ -225,8 +225,8 @@ const Navbar = () => {
 
           <div className="my-auto grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <ul className="space-y-1">
-              {navData.map((item, index) => (
-                <li key={item.title}>
+              {site.nav.map((item, index) => (
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
@@ -235,7 +235,7 @@ const Navbar = () => {
                     <span className="text-blue-light font-sans text-[10px] tracking-[0.2em]">
                       0{index + 1}
                     </span>
-                    {item.title}
+                    {item.label}
                   </Link>
                 </li>
               ))}
