@@ -139,12 +139,14 @@ export function Footer() {
         <div className="text-primary-foreground/70 flex gap-6 text-[0.7rem] tracking-[0.28em] uppercase">
           <a
             href={site.social.instagram}
+            target="_blank"
             className="hover:text-accent transition-colors"
           >
             Instagram
           </a>
           <a
             href={site.social.linkedin}
+            target="_blank"
             className="hover:text-accent transition-colors"
           >
             LinkedIn

@@ -7,9 +7,9 @@ export const site = {
   phone: "+91 9650274785",
   address: "898 Udyog Vihar, Phase 1, Gurgaon, Haryana, India",
   social: {
-    instagram: "https://instagram.com",
-    linkedin: "https://linkedin.com",
-    facebook: "https://facebook.com",
+    instagram: "https://instagram.com/eastboundgroup",
+    linkedin: "https://www.linkedin.com/company/east-bound-official/home/",
+    facebook: "https://www.facebook.com/eastboundtravels/",
   },
   nav: [
     { label: "Destinations", href: "/destinations" },
