@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Eastbound Group",
   description:
     "Eastbound Group is a leading travel company specializing in curated journeys across India, Bhutan, Nepal, and the Sub-Continent. Explore our destinations and discover extraordinary experiences.",
+  icons: {
+    icon: "/logo/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
