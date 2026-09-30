@@ -8,8 +8,8 @@ import { MoveRight } from "lucide-react";
 
 const videoURL = "https://stream.mux.com/";
 const videoIDs = [
-  "S2RRL3V75jl9QogjjtWZLcNpTJTVqy02laQa1FhLSixI",
   "9022vXqxureSKaBH7UZ00WYFRULLTuB8WbaVrOxSCFiD4",
+  "S2RRL3V75jl9QogjjtWZLcNpTJTVqy02laQa1FhLSixI",
   "SZJLzywFHSO9irdzrbbzpw2PLgy9msG8nOMb02L2xQSc",
 ];
 const videoExtension = ".m3u8";
