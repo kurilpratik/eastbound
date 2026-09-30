@@ -1,6 +1,7 @@
 import { experiences } from "@/data/experiences";
 import { Reveal } from "../Reveal";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../ui/Button";
 
 export function SignatureExperiencesSection() {
@@ -46,9 +47,11 @@ export function SignatureExperiencesSection() {
                 <p className="text-muted-foreground mb-6 text-sm leading-relaxed font-light">
                   {e.copy}
                 </p>
-                <Button variant={"link"} size={"link"}>
-                  Discover the Journey
-                  <span className="btn-link-icon">→</span>
+                <Button asChild variant={"link"} size={"link"}>
+                  <Link href={e.href}>
+                    Discover the Journey
+                    <span className="btn-link-icon">→</span>
+                  </Link>
                 </Button>
               </div>
             </Reveal>

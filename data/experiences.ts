@@ -5,6 +5,7 @@ export type Experience = {
   duration: string;
   image: string;
   copy: string;
+  href: string;
 };
 
 export const experiences: Experience[] = [
@@ -15,6 +16,7 @@ export const experiences: Experience[] = [
     duration: "7 nights",
     image: "/images/experiences/photo.jpg",
     copy: "Capture extraordinary landscapes, wildlife and cultures with award-winning photographers, expert planning and local access. ",
+    href: "/experiences#photography",
   },
   {
     id: "birding-tours",
@@ -23,6 +25,7 @@ export const experiences: Experience[] = [
     duration: "9 nights",
     image: "/images/experiences/birds.jpg",
     copy: "Explore some of Asia's richest biodiversity hotspots.",
+    href: "/experiences#birding",
   },
   {
     id: "walking-journeys",
@@ -31,5 +34,6 @@ export const experiences: Experience[] = [
     duration: "12 nights",
     image: "/images/experiences/walk.jpg",
     copy: "Slow travel through heritage towns, villages and natural landscapes. ",
+    href: "/experiences#walking",
   },
 ];
