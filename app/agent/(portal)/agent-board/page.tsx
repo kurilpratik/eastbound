@@ -2,13 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
+import AgentBoardNav from "@/components/agent/AgentBoardNav";
 import AgentResources from "@/components/agent/AgentResources";
 import { Button } from "@/components/ui/Button";
+import { getSessionProfile } from "@/lib/auth/profile";
 
-const AgentBoard = () => {
+const AgentBoard = async () => {
+  const session = await getSessionProfile();
+  const fullName = session?.profile.name ?? "";
+
   return (
     <main className="min-h-screen bg-white p-4 text-white">
-      <div className="grid min-h-[calc(100vh-2rem)] overflow-hidden border border-[#d9d9d9] bg-white lg:grid-cols-2">
+      <AgentBoardNav fullName={fullName} />
+      <div className="grid min-h-[calc(100vh-6.5rem)] overflow-hidden border border-[#d9d9d9] bg-white lg:grid-cols-2">
         <div className="group relative block min-h-[50vh] overflow-hidden border-b border-[#d9d9d9] lg:border-r lg:border-b-0 lg:border-[#d9d9d9]">
           <Image
             src="/images/agent/ag-bg-1.jpg"

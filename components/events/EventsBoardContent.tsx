@@ -306,7 +306,7 @@ const renderSectionContent = (section: (typeof sections)[number]) => {
   }
 };
 
-const EventsBoard = () => {
+const EventsBoardContent = () => {
   const [active, setActive] = useState<string>(
     navItems[0]?.href.replace("#", "") ?? "",
   );
@@ -347,7 +347,7 @@ const EventsBoard = () => {
     };
 
   return (
-    <main className="min-h-screen text-[#0d2031]">
+    <>
       <section className="relative overflow-hidden border-b border-[#d9d9d9] bg-[#0d2031] text-white">
         <Image
           src="/images/events/events-bg.jpg"
@@ -359,10 +359,10 @@ const EventsBoard = () => {
         />
         <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#0d2031]/90 via-[#0d2031]/35 to-[#0d2031]/60" />
 
-        <div className="relative container mx-auto px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-24">
+        <div className="relative container mx-auto px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
           <div className="max-w-3xl">
             <p className="eyebrow text-blue-light">Eastbound events portal</p>
-            <h1 className="mt-5 font-serif text-5xl leading-[0.92] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 font-serif text-5xl leading-[0.92] tracking-[-0.04em] sm:text-6xl">
               Events that feel distinctly local, deeply considered and
               beautifully delivered.
             </h1>
@@ -451,8 +451,8 @@ const EventsBoard = () => {
           ))}
         </div>
       </div>
-    </main>
+    </>
   );
 };
 
-export default EventsBoard;
+export default EventsBoardContent;
