@@ -27,6 +27,29 @@ export const aboutUsStory = {
   ],
 };
 
+export const aboutUsValues = [
+  {
+    title: "Authenticity",
+    description:
+      "We design experiences that are genuine to the destination, not manufactured for tourists.",
+  },
+  {
+    title: "Excellence",
+    description:
+      "Operational precision is non-negotiable, at any scale of programme.",
+  },
+  {
+    title: "Partnership",
+    description:
+      "We see ourselves as an extension of our travel-trade partners' own teams.",
+  },
+  {
+    title: "Responsibility",
+    description:
+      "Sustainable, respectful travel that benefits local communities.",
+  },
+] as const;
+
 export const leaders: PersonProfile[] = [
   {
     name: "Prrithviraj Singh",

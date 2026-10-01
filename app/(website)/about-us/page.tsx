@@ -2,13 +2,26 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Award, Compass, Handshake, Leaf } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Button } from "@/components/ui/Button";
-import { aboutUsHero, aboutUsStory, leaders, team } from "@/data/aboutUs";
-import { site } from "@/data/site";
+import {
+  aboutUsHero,
+  aboutUsStory,
+  aboutUsValues,
+  leaders,
+  team,
+} from "@/data/aboutUs";
 import Sustainability from "@/components/Sustainability";
+
+const valueIcons = {
+  Authenticity: Compass,
+  Excellence: Award,
+  Partnership: Handshake,
+  Responsibility: Leaf,
+} as const;
 
 const AboutUs = () => {
   const [expandedLeaders, setExpandedLeaders] = useState<
@@ -115,6 +128,41 @@ const AboutUs = () => {
           </div>
         </section>
 
+        <section className="bg-background pb-24 md:pb-36">
+          <div className="container">
+            <Reveal className="mb-14">
+              <p className="eyebrow text-blue-light mb-4">Our Values</p>
+              <h2 className="text-blue-dark font-serif text-4xl leading-[1.04] md:text-5xl">
+                What guides every journey we build.
+              </h2>
+            </Reveal>
+
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+              {aboutUsValues.map((value, index) => {
+                const Icon = valueIcons[value.title];
+
+                return (
+                  <Reveal key={value.title} delay={index * 80}>
+                    <article>
+                      <Icon
+                        className="text-primary mb-5 h-7 w-7"
+                        strokeWidth={1.5}
+                        aria-hidden
+                      />
+                      <h3 className="text-blue-dark font-serif text-2xl leading-tight md:text-[1.65rem]">
+                        {value.title}
+                      </h3>
+                      <p className="text-muted-foreground mt-3 text-sm leading-relaxed font-light md:text-base">
+                        {value.description}
+                      </p>
+                    </article>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <section className="bg-secondary/60 py-24 md:py-36">
           <div className="container">
             <Reveal className="mb-20 grid gap-8 lg:grid-cols-12">
@@ -195,7 +243,7 @@ const AboutUs = () => {
           </div>
         </section>
 
-        <section className="bg-background py-24 md:py-36">
+        <section className="bg-background pt-24 pb-12 md:pt-36 md:pb-16">
           <div className="container">
             <Reveal className="mb-16 grid gap-8 lg:grid-cols-12">
               <div className="lg:col-span-5">
