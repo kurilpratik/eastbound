@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { services } from "@/data/services";
+import Link from "next/link";
+import { servicePages } from "@/data/servicePages";
 import { Reveal } from "../Reveal";
 import { Button } from "../ui/Button";
 
@@ -21,7 +22,7 @@ export function ServicesSection() {
           <div>
             <p className="eyebrow mb-4 text-white">Our services</p>
             <h2 className="font-serif text-4xl leading-[1.05] text-white md:text-6xl">
-              Six ways to travel with{" "}
+              Four ways to travel with{" "}
               <span className="text-primary">Eastbound.</span>
             </h2>
           </div>
@@ -31,25 +32,27 @@ export function ServicesSection() {
           </p> */}
         </Reveal>
 
-        <div className="border-border/60 relative grid border-t border-l sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, i) => (
+        <div className="border-border/60 relative grid border-t border-l sm:grid-cols-2">
+          {servicePages.map((s, i) => (
             <Reveal
               key={s.id}
               delay={i * 80}
               className="card-frame group border-border/60 bg-background relative flex min-h-[280px] flex-col items-start border-r border-b p-8 backdrop-blur-[2px] md:p-10"
             >
               <span className="text-blue-dark mb-6 font-serif text-xl italic">
-                {s.numeral}
+                {s.index}
               </span>
               <h3 className="text-primary mb-4 font-serif text-2xl md:text-3xl">
                 {s.name}
               </h3>
               <p className="text-muted-foreground mb-4 text-sm leading-relaxed font-light">
-                {s.description}
+                {s.tagline}
               </p>
-              <Button variant="link" size="link">
-                Enquire
-                <span className="btn-link-icon">→</span>
+              <Button asChild variant="link" size="link">
+                <Link href={`/services#${s.id}`}>
+                  Enquire
+                  <span className="btn-link-icon">→</span>
+                </Link>
               </Button>
             </Reveal>
           ))}
