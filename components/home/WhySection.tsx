@@ -3,27 +3,27 @@ import { Reveal } from "../Reveal";
 const reasons = [
   {
     id: "01",
-    title: "Access, not itinerary",
+    title: "Listen first",
     description:
-      "Private audiences, closed doors and dawn hours reserved for you — the Eastbound advantage is rare and highly personal.",
+      "Every programme starts with understanding the traveller, the brief and the brand it needs to reflect.",
   },
   {
     id: "02",
-    title: "One designer, one journey",
+    title: "Design locally",
     description:
-      "A single senior consultant carries your journey from first call to homecoming letter.",
+      "Our on-the-ground teams shape itineraries around real access, relationships and insider knowledge.",
   },
   {
     id: "03",
-    title: "Twenty-two years, five countries",
+    title: "Execute relentlessly and meticulously",
     description:
-      "Two decades of relationships with the region's finest hoteliers, guides and craftspersons.",
+      "Dedicated operations teams manage every detail from arrival to departure.",
   },
   {
     id: "04",
-    title: "Quietly responsible",
+    title: "Stay accountable",
     description:
-      "Every journey contributes to conservation and community projects across the regions we work in.",
+      "A single point of contact for our partners throughout, with 24/7 on-ground support.",
   },
 ];
 
@@ -36,7 +36,7 @@ const WhySection = () => {
       <div className="container">
         <Reveal className="mb-20 max-w-3xl">
           <p className="eyebrow text-blue-light mb-8 text-xs">Why Eastbound</p>
-          <h2 className="font-serif text-4xl leading-[1.05] md:text-6xl">
+          <h2 className="font-serif text-4xl leading-[1.05] md:text-5xl">
             The difference is in the{" "}
             <span className="text-primary">detail</span> — and in the people who
             arrange it.
