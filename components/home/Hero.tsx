@@ -71,10 +71,11 @@ const Hero = () => {
             ))}
           </div>
 
-          <h1 className="font-regular font-serif text-3xl leading-none text-white sm:text-4xl sm:leading-[1.08] lg:text-5xl">
-            <span className="text-4xl lg:text-6xl">20</span> Years of
-            Extraordinary Journeys
-            <span className="block"> Timeless Expeditions</span>
+          <h1 className="font-serif text-[2.15rem] leading-[1.08] tracking-[-0.03em] text-white sm:text-4xl sm:leading-[1.08] lg:text-5xl">
+            <span className="text-[2.55rem] sm:text-4xl lg:text-6xl">20</span>{" "}
+            Years of
+            <br className="sm:hidden" /> Extraordinary Journeys
+            <span className="mt-1 block sm:mt-0">Timeless Expeditions</span>
           </h1>
           <p className="mt-5 mb-6 max-w-xl text-sm leading-6 text-white/85 sm:text-sm sm:leading-7">
             From luxury FITs and incentive travel to photography, culinary tours

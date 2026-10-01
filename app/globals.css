@@ -152,6 +152,10 @@ body {
     scroll-behavior: smooth;
   }
 
+  h1 {
+    @apply font-serif leading-none;
+  }
+
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.72rem;
@@ -169,10 +173,6 @@ body {
 
 .nav-link {
   @apply rounded-md px-3 py-2 text-sm tracking-wider text-neutral-300 uppercase transition-colors duration-200 hover:text-white;
-}
-
-h1 {
-  @apply font-serif leading-16;
 }
 
 /* Fancy border-hover card */
