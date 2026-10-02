@@ -51,7 +51,7 @@ export function Footer() {
           </Reveal>
 
           <Reveal delay={120}>
-            <EnquiryForm variant="short" />
+            <EnquiryForm source="footer" />
           </Reveal>
         </div>
       </div>

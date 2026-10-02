@@ -98,7 +98,7 @@ const ContactPage = () => {
             </Reveal>
 
             <div className="lg:col-span-8">
-              <EnquiryForm variant="detailed" />
+              <EnquiryForm source="contact_page" />
             </div>
           </div>
         </section>

@@ -1,4 +1,5 @@
 import {
+  index,
   jsonb,
   pgEnum,
   pgTable,
@@ -44,3 +45,40 @@ export type Profile = typeof profiles.$inferSelect;
 export type NewProfile = typeof profiles.$inferInsert;
 export type PortalRole = (typeof portalRoleEnum.enumValues)[number];
 export type ProfileStatus = (typeof profileStatusEnum.enumValues)[number];
+
+/** Where the public enquiry form was submitted (Footer band vs Contact page). */
+export const enquirySourceEnum = pgEnum("enquiry_source", [
+  "footer",
+  "contact_page",
+]);
+
+export const enquiries = pgTable(
+  "enquiries",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    source: enquirySourceEnum("source").notNull(),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    phone: text("phone"),
+    destination: text("destination"),
+    message: text("message"),
+    company: text("company"),
+    programmeType: text("programme_type"),
+    travelDates: text("travel_dates"),
+    /** SHA-256 of client IP + salt; used for rate limiting only. */
+    submitterIpHash: text("submitter_ip_hash"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("enquiries_ip_hash_created_at_idx").on(
+      table.submitterIpHash,
+      table.createdAt,
+    ),
+  ],
+);
+
+export type Enquiry = typeof enquiries.$inferSelect;
+export type NewEnquiry = typeof enquiries.$inferInsert;
+export type EnquirySource = (typeof enquirySourceEnum.enumValues)[number];

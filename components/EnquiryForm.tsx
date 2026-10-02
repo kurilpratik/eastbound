@@ -1,19 +1,23 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useActionState, useEffect, useRef, useState, type ReactNode } from "react";
 
 import { destinationOptions, programmeTypes } from "@/data/contact";
-
-export type EnquiryFormVariant = "short" | "detailed";
+import {
+  submitEnquiry,
+  type EnquiryActionState,
+} from "@/lib/enquiry/actions";
+import { HONEYPOT_FIELD } from "@/lib/enquiry/constants";
+import type { EnquirySource } from "@/lib/db/schema";
 
 type EnquiryFormProps = {
-  variant: EnquiryFormVariant;
+  source: EnquirySource;
   className?: string;
 };
 
-const submitLabels: Record<EnquiryFormVariant, string> = {
-  short: "Submit enquiry",
-  detailed: "Send enquiry",
+const submitLabels: Record<EnquirySource, string> = {
+  footer: "Submit enquiry",
+  contact_page: "Send enquiry",
 };
 
 const successCopy = {
@@ -21,50 +25,88 @@ const successCopy = {
   body: "A consultant will review what you've shared and be in touch within one working day.",
 };
 
-export function EnquiryForm({ variant, className = "" }: EnquiryFormProps) {
-  const [sent, setSent] = useState(false);
-  const theme = variant === "short" ? "dark" : "light";
+export function EnquiryForm({ source, className = "" }: EnquiryFormProps) {
+  const formAction = submitEnquiry.bind(null, source);
+  const [state, action, isPending] = useActionState<
+    EnquiryActionState,
+    FormData
+  >(formAction, null);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const theme = source === "footer" ? "dark" : "light";
+  const isDetailed = source === "contact_page";
   const inputClass =
     theme === "dark"
       ? "enquiry-input enquiry-input--dark"
       : "enquiry-input enquiry-input--light";
-  const formClass =
-    variant === "short"
-      ? `space-y-6 ${className}`
-      : `grid gap-x-8 gap-y-7 sm:grid-cols-2 ${className}`;
+  const formClass = isDetailed
+    ? `grid gap-x-8 gap-y-7 sm:grid-cols-2 ${className}`
+    : `space-y-6 ${className}`;
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    e.currentTarget.reset();
-    setSent(true);
-  };
+  useEffect(() => {
+    if (state?.success) {
+      formRef.current?.reset();
+      setShowSuccess(true);
+    }
+    if (state?.error) {
+      setShowSuccess(false);
+    }
+  }, [state]);
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={formClass}>
-        {sent ? (
-          <EnquirySuccessNotice
+      <form ref={formRef} action={action} className={formClass}>
+        <input type="hidden" name="source" value={source} />
+        <EnquiryHoneypot />
+
+        {state?.error ? (
+          <EnquiryErrorNotice
             theme={theme}
-            className={variant === "detailed" ? "sm:col-span-2" : undefined}
-            onDismiss={() => setSent(false)}
+            message={state.error}
+            className={isDetailed ? "sm:col-span-2" : undefined}
           />
         ) : null}
 
-        {variant === "short" ? (
-          <ShortEnquiryFields inputClass={inputClass} theme={theme} />
-        ) : (
+        {showSuccess && state?.success ? (
+          <EnquirySuccessNotice
+            theme={theme}
+            className={isDetailed ? "sm:col-span-2" : undefined}
+            onDismiss={() => setShowSuccess(false)}
+          />
+        ) : null}
+
+        {isDetailed ? (
           <DetailedEnquiryFields inputClass={inputClass} theme={theme} />
+        ) : (
+          <ShortEnquiryFields inputClass={inputClass} theme={theme} />
         )}
 
-        <div className={variant === "detailed" ? "sm:col-span-2" : undefined}>
+        <div className={isDetailed ? "sm:col-span-2" : undefined}>
           <EnquirySubmitButton
-            label={submitLabels[variant]}
-            className={variant === "short" ? "hover:font-semibold" : ""}
+            label={submitLabels[source]}
+            pending={isPending}
+            className={source === "footer" ? "hover:font-semibold" : ""}
           />
         </div>
       </form>
       <EnquiryFormStyles />
     </>
+  );
+}
+
+function EnquiryHoneypot() {
+  return (
+    <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden>
+      <label htmlFor={HONEYPOT_FIELD}>Company website</label>
+      <input
+        id={HONEYPOT_FIELD}
+        name={HONEYPOT_FIELD}
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+      />
+    </div>
   );
 }
 
@@ -79,41 +121,48 @@ function ShortEnquiryFields({
     <>
       <EnquiryField label="Name" theme={theme}>
         <input
+          name="name"
           required
           type="text"
           className={inputClass}
           placeholder="Your name"
+          autoComplete="name"
         />
       </EnquiryField>
       <div className="grid gap-6 sm:grid-cols-2">
         <EnquiryField label="Email" theme={theme}>
           <input
+            name="email"
             required
             type="email"
             className={inputClass}
             placeholder="you@example.com"
+            autoComplete="email"
           />
         </EnquiryField>
         <EnquiryField label="Phone" theme={theme}>
           <input
+            name="phone"
             type="tel"
             className={inputClass}
             placeholder="+1 555 000 0000"
+            autoComplete="tel"
           />
         </EnquiryField>
       </div>
       <EnquiryField label="Destination" theme={theme}>
-        <select className={inputClass} defaultValue="">
+        <select name="destination" className={inputClass} defaultValue="">
           <option value="" disabled>
             Where would you like to go?
           </option>
           {destinationOptions.map((d) => (
-            <option key={d}>{d}</option>
+            <option key={d} value={d}>{d}</option>
           ))}
         </select>
       </EnquiryField>
       <EnquiryField label="A little about your trip" theme={theme}>
         <textarea
+          name="message"
           rows={4}
           className={`${inputClass} resize-none`}
           placeholder="Dates, party size, anything you already dream of..."
@@ -135,35 +184,43 @@ function DetailedEnquiryFields({
       <EnquiryField label="Name *" htmlFor="c-name" theme={theme}>
         <input
           id="c-name"
+          name="name"
           required
           type="text"
           className={inputClass}
           placeholder="Your name"
+          autoComplete="name"
         />
       </EnquiryField>
       <EnquiryField label="Company" htmlFor="c-company" theme={theme}>
         <input
           id="c-company"
+          name="company"
           type="text"
           className={inputClass}
           placeholder="Company / agency"
+          autoComplete="organization"
         />
       </EnquiryField>
       <EnquiryField label="Email *" htmlFor="c-email" theme={theme}>
         <input
           id="c-email"
+          name="email"
           required
           type="email"
           className={inputClass}
           placeholder="you@example.com"
+          autoComplete="email"
         />
       </EnquiryField>
       <EnquiryField label="Phone" htmlFor="c-phone" theme={theme}>
         <input
           id="c-phone"
+          name="phone"
           type="tel"
           className={inputClass}
           placeholder="+1 555 000 0000"
+          autoComplete="tel"
         />
       </EnquiryField>
       <EnquiryField
@@ -171,22 +228,22 @@ function DetailedEnquiryFields({
         htmlFor="c-dest"
         theme={theme}
       >
-        <select id="c-dest" className={inputClass} defaultValue="">
+        <select id="c-dest" name="destination" className={inputClass} defaultValue="">
           <option value="" disabled>
             Select a destination
           </option>
           {destinationOptions.map((d) => (
-            <option key={d}>{d}</option>
+            <option key={d} value={d}>{d}</option>
           ))}
         </select>
       </EnquiryField>
       <EnquiryField label="Type of programme" htmlFor="c-type" theme={theme}>
-        <select id="c-type" className={inputClass} defaultValue="">
+        <select id="c-type" name="programme_type" className={inputClass} defaultValue="">
           <option value="" disabled>
             Select a programme type
           </option>
           {programmeTypes.map((p) => (
-            <option key={p}>{p}</option>
+            <option key={p} value={p}>{p}</option>
           ))}
         </select>
       </EnquiryField>
@@ -198,6 +255,7 @@ function DetailedEnquiryFields({
       >
         <input
           id="c-dates"
+          name="travel_dates"
           type="text"
           className={inputClass}
           placeholder="e.g. Late February 2027, 11 nights"
@@ -211,12 +269,37 @@ function DetailedEnquiryFields({
       >
         <textarea
           id="c-message"
+          name="message"
           rows={5}
           className={`${inputClass} resize-none`}
           placeholder="Party size, interests, budget guidance, anything already decided..."
         />
       </EnquiryField>
     </>
+  );
+}
+
+function EnquiryErrorNotice({
+  theme,
+  message,
+  className = "",
+}: {
+  theme: "dark" | "light";
+  message: string;
+  className?: string;
+}) {
+  const surfaceClass =
+    theme === "dark"
+      ? "border-red-400/40 bg-red-500/10 text-red-50"
+      : "border-red-500/35 bg-red-500/5 text-red-900";
+
+  return (
+    <div
+      role="alert"
+      className={`border px-4 py-3 text-sm leading-relaxed ${surfaceClass} ${className}`}
+    >
+      {message}
+    </div>
   );
 }
 
@@ -265,17 +348,20 @@ function EnquirySuccessNotice({
 
 function EnquirySubmitButton({
   label,
+  pending,
   className = "",
 }: {
   label: string;
+  pending: boolean;
   className?: string;
 }) {
   return (
     <button
       type="submit"
-      className={`group bg-accent text-accent-foreground inline-flex items-center gap-3 px-8 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-transform duration-300 hover:-translate-y-0.5 ${className}`}
+      disabled={pending}
+      className={`group bg-accent text-accent-foreground inline-flex items-center gap-3 px-8 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-transform duration-300 hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-60 ${className}`}
     >
-      {label}
+      {pending ? "Sending…" : label}
       <span className="transition-transform duration-300 group-hover:translate-x-1">
         →
       </span>
