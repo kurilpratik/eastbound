@@ -1,6 +1,6 @@
 # Public enquiry forms
 
-Marketing-site enquiry submissions from the **Footer** band and **Contact page** are stored in Neon Postgres via a server action.
+Marketing-site enquiry submissions from the **Footer** band and **Contact page** are stored in Neon Postgres and trigger an **internal** team notification via Resend.
 
 ## Data model
 
@@ -26,8 +26,19 @@ Display labels for `source` (for reporting): **Footer**, **Contact page** — se
 
 1. `EnquiryForm` (`components/EnquiryForm.tsx`) posts `FormData` to `submitEnquiry` in `lib/enquiry/actions.ts`.
 2. The action is bound to the expected `source` (`footer` or `contact_page`) so the hidden `source` field must match.
-3. On success: row inserted, form reset, success notice shown.
+3. On success: row inserted → Resend notification to the team → form reset → success notice shown.
 4. On failure: inline error (`role="alert"`) with a specific message; fields are kept.
+
+### Email notifications (Resend)
+
+Implementation: `lib/enquiry/email.ts`
+
+- **Internal only** — no auto-reply to the guest.
+- **HTML** summary of all stored fields.
+- **Reply-To** is the submitter’s email so you can reply from your inbox.
+- **Subject:** `New enquiry — Footer` or `New enquiry — Contact page`.
+
+Order of operations: **database insert first**, then email. If Resend fails, the user sees an error (see [Failure handling](#failure-handling)).
 
 ## Spam controls
 
@@ -35,7 +46,7 @@ Display labels for `source` (for reporting): **Footer**, **Contact page** — se
 
 - Field name: `company_website` (`HONEYPOT_FIELD` in `lib/enquiry/constants.ts`).
 - Hidden off-screen; humans should leave it empty.
-- If filled: the action returns the same success message **without** writing to the database (no error text that reveals the honeypot).
+- If filled: the action returns the same success message **without** writing to the database or sending email.
 
 ### Rate limit
 
@@ -62,6 +73,50 @@ If unset, a dev default is used — **set a unique salt in production** so hashe
 | `DATABASE_URL` | Runtime queries (pooled), used by `lib/db/index.ts` |
 | `DATABASE_URL_UNPOOLED` | Migrations via `drizzle-kit` |
 | `ENQUIRY_RATE_LIMIT_SALT` | Optional but recommended for IP hashing |
+| `RESEND_API_KEY` | Resend API key ([Resend dashboard](https://resend.com/api-keys)) |
+| `ENQUIRY_FROM_EMAIL` | Sender address (must be allowed in Resend for that key) |
+| `ENQUIRY_NOTIFY_EMAIL` | Team inbox that receives new enquiry emails |
+
+### Local development (domain not verified yet)
+
+Resend only allows `onboarding@resend.dev` as **From** until `eastboundgroup.com` is verified. You can only send to the email on your Resend account unless you verify the domain.
+
+Example `.env.local`:
+
+```bash
+RESEND_API_KEY="re_..."
+ENQUIRY_FROM_EMAIL="onboarding@resend.dev"
+ENQUIRY_NOTIFY_EMAIL="pratikkurilworks@gmail.com"
+```
+
+### Production (after domain verification)
+
+Use your verified domain for **From**. **Notify** can be the same address as **From** (e.g. both `info@eastboundgroup.com`).
+
+```bash
+RESEND_API_KEY="re_..."
+ENQUIRY_FROM_EMAIL="info@eastboundgroup.com"
+ENQUIRY_NOTIFY_EMAIL="info@eastboundgroup.com"
+```
+
+If `ENQUIRY_FROM_EMAIL` / `ENQUIRY_NOTIFY_EMAIL` are omitted in production, both default to `info@eastboundgroup.com`. In development, **From** defaults to `onboarding@resend.dev` when `ENQUIRY_FROM_EMAIL` is unset.
+
+## Failure handling
+
+**Current behaviour (strict):** If the row is saved but Resend fails, the user sees an error explaining that the team may not have been notified, with a prompt to email `info@eastboundgroup.com`. The enquiry **remains in the database**. Submitting again may create a **duplicate row** — the error message warns against resubmitting unless they are unsure you received it.
+
+### Future: reliable delivery (option C — not implemented)
+
+To avoid blocking guests when email is down, and to avoid duplicates on retry:
+
+1. **Transactional outbox** — In the same DB transaction as `INSERT INTO enquiries`, insert a row into `enquiry_notifications` with status `pending` and payload snapshot.
+2. **Return success to the user** once the enquiry row (and outbox row) commit — email is asynchronous.
+3. **Worker** — Cron, queue consumer, or Neon Function reads `pending` rows, calls Resend, sets `sent` or `failed` with `attempts` and `last_error`.
+4. **Retries** — Exponential backoff (e.g. 1m, 5m, 30m) until `max_attempts`; alert ops if still `failed`.
+5. **Idempotency** — Use enquiry `id` as Resend idempotency key (or store `resend_message_id`) so retries do not double-send.
+6. **Admin** — Optional view of failed notifications to resend manually from Drizzle Studio or a small internal page.
+
+This keeps UX friendly (always thank the user when data is safe) while making email delivery observable and recoverable.
 
 ## Migrations
 
@@ -98,8 +153,9 @@ LIMIT 20;
 | `components/Footer.tsx` | `source="footer"` | Short form |
 | `app/(website)/contact/page.tsx` | `source="contact_page"` | Detailed form |
 
-## Future work (not implemented)
+## Future work
 
-- Email notifications to the team on new enquiries
-- Admin UI to list and update enquiry status
+- Guest auto-reply (“We received your enquiry”)
+- Admin UI to list enquiries and notification status
+- Outbox + retry worker (option C above)
 - Stricter bot protection (CAPTCHA) if honeypot + rate limit are insufficient

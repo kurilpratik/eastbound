@@ -7,7 +7,10 @@ import {
   type EnquirySource,
 } from "@/lib/db/schema";
 
+import { site } from "@/data/site";
+
 import { HONEYPOT_FIELD } from "./constants";
+import { sendEnquiryNotification } from "./email";
 import { getSubmitterIpHash, isRateLimited } from "./rate-limit";
 
 export type EnquiryActionState = {
@@ -90,6 +93,25 @@ export async function submitEnquiry(
     return {
       error:
         "We couldn't save your enquiry right now. Please try again in a few minutes or contact us by email.",
+    };
+  }
+
+  const emailResult = await sendEnquiryNotification({
+    source: expectedSource,
+    name,
+    email,
+    phone,
+    destination,
+    message,
+    company: expectedSource === "contact_page" ? company : null,
+    programmeType: expectedSource === "contact_page" ? programmeType : null,
+    travelDates: expectedSource === "contact_page" ? travelDates : null,
+  });
+
+  if (!emailResult.ok) {
+    return {
+      error:
+        `We saved your enquiry, but could not notify our team by email (${emailResult.message}). Please contact us at ${site.email} so we can follow up — avoid resubmitting unless you are unsure we received it.`,
     };
   }
 
