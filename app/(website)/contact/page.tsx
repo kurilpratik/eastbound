@@ -1,13 +1,10 @@
 "use client";
 
-import { useState } from "react";
-
 import { Reveal } from "@/components/Reveal";
+import { EnquiryForm } from "@/components/EnquiryForm";
 import {
   contactHero,
   offices,
-  programmeTypes,
-  destinationOptions,
   financialRiskAssurance,
   financialRiskAssuranceStatement,
 } from "@/data/contact";
@@ -15,7 +12,6 @@ import { site } from "@/data/site";
 import BrandLogos from "@/components/BrandLogos";
 
 const ContactPage = () => {
-  const [sent, setSent] = useState(false);
   return (
     <div>
       <main className="bg-blue-dark text-foreground">
@@ -102,103 +98,7 @@ const ContactPage = () => {
             </Reveal>
 
             <div className="lg:col-span-8">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-                className="grid gap-x-8 gap-y-7 sm:grid-cols-2"
-              >
-                <Field label="Name *" htmlFor="c-name">
-                  <input
-                    id="c-name"
-                    required
-                    type="text"
-                    className="contact-input"
-                    placeholder="Your name"
-                  />
-                </Field>
-                <Field label="Company" htmlFor="c-company">
-                  <input
-                    id="c-company"
-                    type="text"
-                    className="contact-input"
-                    placeholder="Company / agency"
-                  />
-                </Field>
-                <Field label="Email *" htmlFor="c-email">
-                  <input
-                    id="c-email"
-                    required
-                    type="email"
-                    className="contact-input"
-                    placeholder="you@example.com"
-                  />
-                </Field>
-                <Field label="Phone" htmlFor="c-phone">
-                  <input
-                    id="c-phone"
-                    type="tel"
-                    className="contact-input"
-                    placeholder="+1 555 000 0000"
-                  />
-                </Field>
-                <Field label="Destination(s) of interest" htmlFor="c-dest">
-                  <select id="c-dest" className="contact-input" defaultValue="">
-                    <option value="" disabled>
-                      Select a destination
-                    </option>
-                    {destinationOptions.map((d) => (
-                      <option key={d}>{d}</option>
-                    ))}
-                  </select>
-                </Field>
-                <Field label="Type of programme" htmlFor="c-type">
-                  <select id="c-type" className="contact-input" defaultValue="">
-                    <option value="" disabled>
-                      Select a programme type
-                    </option>
-                    {programmeTypes.map((p) => (
-                      <option key={p}>{p}</option>
-                    ))}
-                  </select>
-                </Field>
-                <Field
-                  label="Travel dates"
-                  htmlFor="c-dates"
-                  className="sm:col-span-2"
-                >
-                  <input
-                    id="c-dates"
-                    type="text"
-                    className="contact-input"
-                    placeholder="e.g. Late February 2027, 11 nights"
-                  />
-                </Field>
-                <Field
-                  label="Message"
-                  htmlFor="c-message"
-                  className="sm:col-span-2"
-                >
-                  <textarea
-                    id="c-message"
-                    rows={5}
-                    className="contact-input resize-none"
-                    placeholder="Party size, interests, budget guidance, anything already decided..."
-                  />
-                </Field>
-                <div className="sm:col-span-2">
-                  <button
-                    type="submit"
-                    className="group bg-accent text-accent-foreground inline-flex items-center gap-3 px-8 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-transform duration-300 hover:-translate-y-0.5"
-                  >
-                    {sent ? "Thank you — we'll be in touch" : "Send enquiry"}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </button>
-                </div>
-              </form>
+              <EnquiryForm variant="detailed" />
             </div>
           </div>
         </section>
@@ -302,51 +202,9 @@ const ContactPage = () => {
         </section>
 
         <BrandLogos />
-
-        <style>{`
-        .contact-input {
-          width: 100%;
-          background: transparent;
-          border: 0;
-          border-bottom: 1px solid var(--input);
-          padding: 0.75rem 0;
-          color: var(--color-primary);
-          font-family: var(--font-sans);
-          font-weight: 300;
-          font-size: 0.95rem;
-          outline: none;
-          transition: border-color 300ms;
-        }
-        .contact-input::placeholder { color: var(--color-muted-foreground); }
-        .contact-input:focus { border-color: var(--color-accent); }
-      `}</style>
       </main>
     </div>
   );
 };
-
-function Field({
-  label,
-  htmlFor,
-  className = "",
-  children,
-}: {
-  label: string;
-  htmlFor: string;
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className={className}>
-      <label
-        htmlFor={htmlFor}
-        className="text-muted-foreground mb-2 block text-[0.65rem] tracking-[0.3em] uppercase"
-      >
-        {label}
-      </label>
-      {children}
-    </div>
-  );
-}
 
 export default ContactPage;

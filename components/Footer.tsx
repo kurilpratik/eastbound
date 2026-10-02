@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { site } from "@/data/site";
+import { EnquiryForm } from "@/components/EnquiryForm";
 import { Reveal } from "./Reveal";
 
 export function Footer() {
-  const [sent, setSent] = useState(false);
   return (
     <footer id="contact" className="bg-blue-dark text-white">
       {/* Enquiry band */}
@@ -52,68 +51,7 @@ export function Footer() {
           </Reveal>
 
           <Reveal delay={120}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-              }}
-              className="space-y-6"
-            >
-              <FormRow label="Name">
-                <input
-                  required
-                  type="text"
-                  className="footer-input"
-                  placeholder="Your name"
-                />
-              </FormRow>
-              <div className="grid gap-6 sm:grid-cols-2">
-                <FormRow label="Email">
-                  <input
-                    required
-                    type="email"
-                    className="footer-input"
-                    placeholder="you@example.com"
-                  />
-                </FormRow>
-                <FormRow label="Phone">
-                  <input
-                    type="tel"
-                    className="footer-input"
-                    placeholder="+1 555 000 0000"
-                  />
-                </FormRow>
-              </div>
-              <FormRow label="Destination">
-                <select className="footer-input" defaultValue="">
-                  <option value="" disabled>
-                    Where would you like to go?
-                  </option>
-                  <option>India</option>
-                  <option>Bhutan</option>
-                  <option>Nepal</option>
-                  <option>Sri Lanka</option>
-                  <option>UAE</option>
-                  <option>Multi-country</option>
-                </select>
-              </FormRow>
-              <FormRow label="A little about your trip">
-                <textarea
-                  rows={4}
-                  className="footer-input resize-none"
-                  placeholder="Dates, party size, anything you already dream of..."
-                />
-              </FormRow>
-              <button
-                type="submit"
-                className="group bg-accent text-accent-foreground inline-flex items-center gap-3 px-8 py-4 text-[0.72rem] tracking-[0.28em] uppercase transition-transform duration-300 hover:-translate-y-0.5 hover:font-semibold"
-              >
-                {sent ? "Thank you — we'll be in touch" : "Submit enquiry"}
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </button>
-            </form>
+            <EnquiryForm variant="short" />
           </Reveal>
         </div>
       </div>
@@ -173,41 +111,6 @@ export function Footer() {
         </div>
       </div>
 
-      <style>{`
-        .footer-input {
-          width: 100%;
-          background: transparent;
-          border: 0;
-          border-bottom: 1px solid rgba(255,255,255,0.2);
-          padding: 0.75rem 0;
-          color: white;
-          font-family: var(--font-sans);
-          font-weight: 300;
-          font-size: 0.95rem;
-          outline: none;
-          transition: border-color 300ms;
-        }
-        .footer-input::placeholder { color: rgba(255,255,255,0.4); }
-        .footer-input:focus { border-color: var(--color-accent); }
-        .footer-input option { color: var(--color-primary); }
-      `}</style>
     </footer>
-  );
-}
-
-function FormRow({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block">
-      <span className="text-primary-foreground/50 mb-2 block text-[0.65rem] tracking-[0.3em] uppercase">
-        {label}
-      </span>
-      {children}
-    </label>
   );
 }
