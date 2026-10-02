@@ -71,7 +71,7 @@ export const allDestinations: DestinationDetail[] = [
       },
       {
         name: "Kochi",
-        image: "/images/destinations/india/cities/kochi.jpg",
+        image: "/images/destinations/india/cities/Kochi.jpg",
         description:
           "Kerala's historic port city with spice trade heritage, Chinese fishing nets and coastal charm.",
       },
@@ -154,23 +154,23 @@ export const allDestinations: DestinationDetail[] = [
     name: "Bhutan",
     about:
       "Because Bhutan runs the world’s most sustainable, slow and considered tourism, Eastbound manages every permit and logistical detail so travellers can focus on cultural immersion (dzongs, monasteries, festivals), trekking from short scenic walks to multi-day Himalayan routes, traditional Bhutanese wellness, and green travel woven into every itinerary.",
-    image: "/images/destinations/bhutan/1.jpg",
+    image: "/images/destinations/Bhutan/1.jpg",
     highlightPlaces: [
       {
         name: "Paro",
-        image: "/images/destinations/bhutan/2.jpg",
+        image: "/images/destinations/Bhutan/2.jpg",
         description:
           "Home to the iconic Tiger’s Nest monastery and a striking valley framed by dramatic peaks.",
       },
       {
         name: "Thimphu",
-        image: "/images/destinations/bhutan/3.jpg",
+        image: "/images/destinations/Bhutan/3.jpg",
         description:
           "The capital offers dzongs, craft heritage, and a refined cultural scene rooted in tradition.",
       },
       {
         name: "Punakha",
-        image: "/images/destinations/bhutan/4.jpg",
+        image: "/images/destinations/Bhutan/4.jpg",
         description:
           "A scenic river valley with grand architecture, riverside landscapes, and peaceful hiking routes.",
       },
