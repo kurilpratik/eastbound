@@ -68,7 +68,6 @@ function buildEnquiryNotificationHtml(
   sourceLabel: string,
 ) {
   const rows: { label: string; value: string | null | undefined }[] = [
-    { label: "Source", value: sourceLabel },
     { label: "Name", value: payload.name },
     { label: "Email", value: payload.email },
     { label: "Phone", value: payload.phone },
@@ -77,6 +76,7 @@ function buildEnquiryNotificationHtml(
     { label: "Programme type", value: payload.programmeType },
     { label: "Travel dates", value: payload.travelDates },
     { label: "Message", value: payload.message },
+    { label: "Source", value: sourceLabel },
   ];
 
   const tableRows = rows
