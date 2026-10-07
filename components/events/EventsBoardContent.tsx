@@ -5,6 +5,10 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import EventRequestForm, {
+  eventRequestSources,
+  type EventRequestSource,
+} from "@/components/events/EventRequestForm";
 import { Button } from "@/components/ui/Button";
 import { eventBoardSections } from "@/data/eventsBoard";
 
@@ -104,8 +108,6 @@ const renderSectionContent = (section: (typeof sections)[number]) => {
           <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
             {section.closingLine}
           </p>
-
-          {renderFormBlock(section)}
         </>
       );
 
@@ -137,8 +139,6 @@ const renderSectionContent = (section: (typeof sections)[number]) => {
           <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
             {section.closingLine}
           </p>
-
-          {renderFormBlock(section)}
         </>
       );
 
@@ -310,6 +310,9 @@ const EventsBoardContent = () => {
   const [active, setActive] = useState<string>(
     navItems[0]?.href.replace("#", "") ?? "",
   );
+  const [requestSource, setRequestSource] = useState<EventRequestSource | null>(
+    null,
+  );
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
@@ -431,19 +434,41 @@ const EventsBoardContent = () => {
                   <h2 className="mt-3 font-serif text-3xl leading-tight tracking-[-0.035em] sm:text-4xl lg:text-5xl">
                     {section.title}
                   </h2>
+                  {section.subtitle && (
+                    <p className="mt-3 max-w-2xl text-base leading-7 text-[#0d2031]/80 sm:text-lg">
+                      {section.subtitle}
+                    </p>
+                  )}
                 </div>
 
-                <Button
-                  asChild
-                  variant="link"
-                  size="link"
-                  className="self-start lg:self-end"
-                >
-                  <Link href={section.cta.href}>
+                {eventRequestSources.includes(
+                  section.id as EventRequestSource,
+                ) ? (
+                  <Button
+                    type="button"
+                    variant="link"
+                    size="link"
+                    className="self-start lg:self-end"
+                    onClick={() =>
+                      setRequestSource(section.id as EventRequestSource)
+                    }
+                  >
                     {section.cta.label}
                     <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </Button>
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    variant="link"
+                    size="link"
+                    className="self-start lg:self-end"
+                  >
+                    <Link href={section.cta.href}>
+                      {section.cta.label}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </Button>
+                )}
               </div>
 
               {renderSectionContent(section)}
@@ -451,6 +476,13 @@ const EventsBoardContent = () => {
           ))}
         </div>
       </div>
+
+      {requestSource ? (
+        <EventRequestForm
+          source={requestSource}
+          onClose={() => setRequestSource(null)}
+        />
+      ) : null}
     </>
   );
 };

@@ -20,6 +20,7 @@ export type EventBoardSection = {
   id: string;
   number: string;
   title: string;
+  subtitle?: string;
   intro: string;
   details?: EventBoardDetail[];
   closingLine: string;
@@ -39,6 +40,8 @@ export const eventBoardSections: EventBoardSection[] = [
     id: "explore-event-venues",
     number: "01",
     title: "Explore Event Venues",
+    subtitle:
+      "Discover exceptional venues for incentives, conferences, celebrations and private events.",
     intro:
       "The right setting shapes everything about an event: how guests arrive, how they gather, how they remember it. Our team knows the region's venues first-hand, and we match each one to your group, your purpose and the mood you want to create.",
     details: [
@@ -60,29 +63,13 @@ export const eventBoardSections: EventBoardSection[] = [
       href: "#request-a-proposal",
       responseTime: "24-hours",
     },
-    form: {
-      title: "Tell us what you need",
-      description:
-        "Share a few details and we’ll recommend the right venue options for your group.",
-      fields: [
-        { label: "Name", type: "text", required: true },
-        { label: "Email", type: "email", required: true },
-        {
-          label: "Short Note on what you need",
-          type: "textarea",
-          required: true,
-        },
-      ],
-      submitButton: "Send My Request",
-      confirmation:
-        "Thank you. We’ve received your request and a member of our team will be in touch within 24-hours.",
-      email: "info@eastboundgroup.com",
-    },
   },
   {
     id: "browse-experiences",
     number: "02",
     title: "Browse Experiences",
+    subtitle:
+      "From private cultural encounters to culinary, wellness, wildlife and adventure experiences, discover ways to make an event memorable.",
     intro:
       "The moments guests talk about long afterwards are rarely the ones on the agenda. We build events around experiences that are personal, local and quietly extraordinary, arranged with the people who know these places best.",
     details: [
@@ -118,20 +105,6 @@ export const eventBoardSections: EventBoardSection[] = [
       label: "Request Experiences",
       href: "#request-a-proposal",
       responseTime: "8 hours",
-    },
-    form: {
-      title: "Tell us what you need",
-      description:
-        "Share your interests and we’ll shape a tailored experience programme around your group.",
-      fields: [
-        { label: "Name", type: "text", required: true },
-        { label: "Email", type: "email", required: true },
-        { label: "What do you need", type: "textarea", required: true },
-      ],
-      submitButton: "Send My Request",
-      confirmation:
-        "Thank you. We’ve received your request and a member of our team will be in touch within 8-hours.",
-      email: "info@eastboundgroup.com",
     },
   },
   {
