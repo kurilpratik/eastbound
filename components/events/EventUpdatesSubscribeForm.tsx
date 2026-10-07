@@ -24,7 +24,6 @@ const formCopy = {
   submitButton: "Subscribe for Updates",
   successTitle: "Thank you for subscribing",
   successBody: "We’ll share new updates as they’re published.",
-  email: "info@eastboundgroup.com",
 };
 
 type EventUpdatesSubscribeFormProps = {
@@ -188,13 +187,10 @@ export default function EventUpdatesSubscribeForm({
               </div>
             </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="mt-5">
               <Button type="submit" disabled={isPending}>
                 {isPending ? "Sending…" : formCopy.submitButton}
               </Button>
-              <p className="text-xs tracking-[0.18em] text-[#0d2031]/55 uppercase">
-                {formCopy.email}
-              </p>
             </div>
           </form>
         )}

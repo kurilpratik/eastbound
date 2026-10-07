@@ -25,7 +25,6 @@ const formCopy = {
   submitButton: "Send My Request",
   successTitle: "Thank you — we've received your request",
   successBody: "A member of our team will be in touch within 8 hours.",
-  email: "info@eastboundgroup.com",
 };
 
 const inputClassName =
@@ -277,13 +276,10 @@ export default function EventProposalForm() {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center gap-3">
+      <div className="mt-5">
         <Button type="submit" disabled={isPending}>
           {isPending ? "Sending…" : formCopy.submitButton}
         </Button>
-        <p className="text-xs tracking-[0.18em] text-[#0d2031]/55 uppercase">
-          {formCopy.email}
-        </p>
       </div>
     </form>
   );
