@@ -15,7 +15,10 @@ import EventUpdatesSubscribeForm, {
   type EventUpdatesSubscribeSource,
 } from "@/components/events/EventUpdatesSubscribeForm";
 import { Button } from "@/components/ui/Button";
-import { eventBoardSections } from "@/data/eventsBoard";
+import {
+  eventBoardSections,
+  type EventBoardDetail,
+} from "@/data/eventsBoard";
 import { site } from "@/data/site";
 
 const navItems = [
@@ -27,6 +30,130 @@ const navItems = [
 ];
 
 const sections = eventBoardSections;
+
+const bodyTextClass =
+  "text-sm leading-6 text-[#0d2031]/52 sm:leading-[1.65]";
+const detailHeadingClass =
+  "font-serif text-xl tracking-[-0.03em] text-[#0d2031] sm:text-2xl";
+const closingTextClass = "text-sm leading-6 text-[#0d2031]/55 sm:max-w-2xl";
+const introTextClass = `mt-5 max-w-3xl ${bodyTextClass}`;
+const cardTitleClass =
+  "font-serif text-lg leading-snug tracking-[-0.02em] text-[#0d2031] sm:text-xl";
+const boardBoxClass =
+  "rounded-xl border border-[#0d2031]/10 bg-[#f4f7f9] p-5 shadow-[0_1px_0_rgba(13,32,49,0.04)] sm:p-6";
+
+const splitListItem = (item: string) => {
+  const separator = " — ";
+  const index = item.indexOf(separator);
+  if (index === -1) {
+    return { title: item, description: null };
+  }
+
+  return {
+    title: item.slice(0, index),
+    description: item.slice(index + separator.length),
+  };
+};
+
+const BoardListItemContent = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string | null;
+}) => {
+  if (!description) {
+    return <>{title}</>;
+  }
+
+  return (
+    <>
+      <span className="font-medium text-[#0d2031]">{title}</span>
+      <span className="text-[#0d2031]/45"> — </span>
+      <span>{description}</span>
+    </>
+  );
+};
+
+const BoardList = ({
+  items,
+  variant = "divided",
+}: {
+  items: string[];
+  variant?: "divided" | "compact";
+}) => {
+  if (variant === "compact") {
+    return (
+      <ul className={`mt-4 list-disc space-y-2 pl-5 marker:text-[#0d2031]/35 ${bodyTextClass}`}>
+        {items.map((item) => {
+          const { title, description } = splitListItem(item);
+
+          return (
+            <li key={item}>
+              <BoardListItemContent title={title} description={description} />
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  return (
+    <ul className="mt-4 divide-y divide-[#e8ebed]">
+      {items.map((item) => {
+        const { title, description } = splitListItem(item);
+
+        return (
+          <li key={item} className="py-4 first:pt-0 last:pb-0">
+            <p className={bodyTextClass}>
+              <BoardListItemContent title={title} description={description} />
+            </p>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+const ExperienceGrid = ({ details }: { details: EventBoardDetail[] }) => (
+  <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    {details.map((detail) => (
+      <article key={detail.heading} className={`${boardBoxClass} h-full`}>
+        <h3 className={cardTitleClass}>{detail.heading}</h3>
+        {detail.description ? (
+          <p className={`mt-2.5 ${bodyTextClass}`}>{detail.description}</p>
+        ) : null}
+      </article>
+    ))}
+  </div>
+);
+
+const ResourceCard = ({ detail }: { detail: EventBoardDetail }) => (
+  <article className={`${boardBoxClass} h-full`}>
+    <h3 className={cardTitleClass}>{detail.heading}</h3>
+    {detail.description ? (
+      <p className={`mt-2.5 max-w-prose ${bodyTextClass}`}>{detail.description}</p>
+    ) : null}
+    {detail.list ? (
+      <BoardList items={detail.list} variant="compact" />
+    ) : null}
+    {detail.download ? (
+      <div className="mt-6">
+        <Button asChild size="sm">
+          <a
+            href={detail.download.href}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {detail.download.label}
+            <Download className="h-4 w-4" />
+          </a>
+        </Button>
+      </div>
+    ) : null}
+  </article>
+);
 
 const renderFormBlock = (section: (typeof sections)[number]) => {
   if (!section.form) return null;
@@ -88,235 +215,95 @@ const renderSectionContent = (section: (typeof sections)[number]) => {
     case "explore-event-venues":
       return (
         <>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-            {section.intro}
-          </p>
+          <p className={introTextClass}>{section.intro}</p>
 
           {section.details?.map((detail) => (
-            <div key={detail.heading} className="mt-8 max-w-4xl">
-              <h3 className="font-serif text-2xl tracking-[-0.03em] text-[#0d2031] sm:text-[2rem]">
-                {detail.heading}
-              </h3>
-
-              {detail.list && (
-                <ul className="mt-4 space-y-3 text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-                  {detail.list.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#0c8dd8]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+            <div key={detail.heading} className="mt-8 max-w-3xl">
+              <h3 className={detailHeadingClass}>{detail.heading}</h3>
+              {detail.list ? <BoardList items={detail.list} /> : null}
             </div>
           ))}
-
-          <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
-            {section.closingLine}
-          </p>
         </>
       );
 
     case "browse-experiences":
       return (
         <>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-            {section.intro}
-          </p>
-
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {section.details?.map((detail) => (
-              <div
-                key={detail.heading}
-                className="rounded-xl border border-[#d9d9d9] bg-[#f8fafb] p-5"
-              >
-                <h3 className="font-serif text-2xl tracking-[-0.03em] text-[#0d2031]">
-                  {detail.heading}
-                </h3>
-                {detail.description && (
-                  <p className="mt-3 text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-                    {detail.description}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
-            {section.closingLine}
-          </p>
+          <p className={introTextClass}>{section.intro}</p>
+          {section.details ? <ExperienceGrid details={section.details} /> : null}
         </>
       );
 
     case "request-a-proposal":
       return (
         <>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-            {section.intro}
-          </p>
+          <p className={introTextClass}>{section.intro}</p>
 
           {section.details?.map((detail) => (
             <div key={detail.heading} className="mt-8">
-              <h3 className="font-serif text-2xl tracking-[-0.03em] text-[#0d2031] sm:text-[2rem]">
-                {detail.heading}
-              </h3>
-
-              {detail.list && (
+              <h3 className={detailHeadingClass}>{detail.heading}</h3>
+              {detail.list ? (
                 <div className="mt-5 grid gap-4 lg:grid-cols-3">
                   {detail.list.map((item, idx) => (
-                    <div
-                      key={item}
-                      className="rounded-xl border border-[#d9d9d9] bg-[#f8fafb] p-5"
-                    >
+                    <div key={item} className={boardBoxClass}>
                       <p className="text-[10px] font-medium tracking-[0.24em] text-[#0c8dd8] uppercase">
-                        {idx + 1}
+                        Step {idx + 1}
                       </p>
-                      <p className="mt-3 text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-                        {item}
-                      </p>
+                      <p className={`mt-3 ${bodyTextClass}`}>{item}</p>
                     </div>
                   ))}
                 </div>
-              )}
+              ) : null}
             </div>
           ))}
-
-          <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
-            {section.closingLine}
-          </p>
         </>
       );
 
     case "event-updates":
       return (
         <>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-            {section.intro}
-          </p>
+          <p className={introTextClass}>{section.intro}</p>
 
           {section.details?.map((detail) => (
-            <div key={detail.heading} className="mt-8">
-              <h3 className="font-serif text-2xl tracking-[-0.03em] text-[#0d2031] sm:text-[2rem]">
-                {detail.heading}
-              </h3>
-
-              {detail.list && (
-                <ul className="mt-5 grid gap-3 md:grid-cols-2">
-                  {detail.list.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 rounded-xl border border-[#d9d9d9] bg-[#f8fafb] p-4 text-sm leading-7 text-[#0d2031]/75 sm:text-base"
-                    >
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#0c8dd8]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+            <div key={detail.heading} className="mt-8 max-w-3xl">
+              <h3 className={detailHeadingClass}>{detail.heading}</h3>
+              {detail.list ? <BoardList items={detail.list} /> : null}
             </div>
           ))}
-
-          <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
-            {section.closingLine}
-          </p>
         </>
       );
 
     case "download-resources":
       return (
         <>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-            {section.intro}
-          </p>
+          <p className={introTextClass}>{section.intro}</p>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {section.details?.map((detail) => (
-              <div
-                key={detail.heading}
-                className="rounded-xl border border-[#d9d9d9] bg-[#f8fafb] p-5"
-              >
-                <h3 className="font-serif text-2xl tracking-[-0.03em] text-[#0d2031]">
-                  {detail.heading}
-                </h3>
-                {detail.description && (
-                  <p className="mt-3 text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-                    {detail.description}
-                  </p>
-                )}
-
-                {detail.list && (
-                  <ul className="mt-4 space-y-2 text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-                    {detail.list.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#0c8dd8]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {detail.download ? (
-                  <div className="mt-5">
-                    <Button asChild size="sm" variant="secondary">
-                      <a
-                        href={detail.download.href}
-                        download
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {detail.download.label}
-                        <Download className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
-                ) : null}
-              </div>
+              <ResourceCard key={detail.heading} detail={detail} />
             ))}
           </div>
-
-          <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
-            {section.closingLine}
-          </p>
         </>
       );
 
     default:
       return (
         <>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-            {section.intro}
-          </p>
+          <p className={introTextClass}>{section.intro}</p>
 
           {section.details?.map((detail) => (
-            <div key={detail.heading} className="mt-8 max-w-4xl">
-              {detail.heading && (
-                <h3 className="font-serif text-2xl tracking-[-0.03em] text-[#0d2031] sm:text-[2rem]">
-                  {detail.heading}
-                </h3>
-              )}
+            <div key={detail.heading} className="mt-8 max-w-3xl">
+              {detail.heading ? (
+                <h3 className={detailHeadingClass}>{detail.heading}</h3>
+              ) : null}
 
               {detail.description && (
-                <p className="mt-3 text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-                  {detail.description}
-                </p>
+                <p className={`mt-3 ${bodyTextClass}`}>{detail.description}</p>
               )}
 
-              {detail.list && (
-                <ul className="mt-4 space-y-3 text-sm leading-7 text-[#0d2031]/75 sm:text-base">
-                  {detail.list.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#0c8dd8]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              {detail.list ? <BoardList items={detail.list} /> : null}
             </div>
           ))}
-
-          <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
-            {section.closingLine}
-          </p>
 
           {renderFormBlock(section)}
         </>
@@ -368,6 +355,60 @@ const EventsBoardContent = () => {
         setActive(id);
       }
     };
+
+  const renderSectionCta = (section: (typeof sections)[number]) => {
+    if (eventRequestSources.includes(section.id as EventRequestSource)) {
+      return (
+        <Button
+          type="button"
+          className="shrink-0"
+          onClick={() => setRequestSource(section.id as EventRequestSource)}
+        >
+          {section.cta.label}
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+      );
+    }
+
+    if (section.id === "request-a-proposal") {
+      return (
+        <Button asChild className="shrink-0">
+          <Link href={eventProposalRequestPath}>
+            {section.cta.label}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      );
+    }
+
+    if (
+      eventUpdatesSubscribeSources.includes(
+        section.id as EventUpdatesSubscribeSource,
+      )
+    ) {
+      return (
+        <Button
+          type="button"
+          className="shrink-0"
+          onClick={() =>
+            setUpdatesSubscribeSource(section.id as EventUpdatesSubscribeSource)
+          }
+        >
+          {section.cta.label}
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+      );
+    }
+
+    return (
+      <Button asChild className="shrink-0">
+        <Link href={section.cta.href}>
+          {section.cta.label}
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </Button>
+    );
+  };
 
   return (
     <>
@@ -446,81 +487,36 @@ const EventsBoardContent = () => {
               id={section.id}
               className="border border-[#d9d9d9] bg-white p-5 shadow-[0_12px_40px_rgba(13,32,49,0.04)] sm:p-8 lg:p-10"
             >
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <div className="max-w-3xl">
-                  <p className="text-[10px] font-medium tracking-[0.28em] text-[#0c8dd8] uppercase">
-                    {section.number}
-                  </p>
-                  <h2 className="mt-3 font-serif text-3xl leading-tight tracking-[-0.035em] sm:text-4xl lg:text-5xl">
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 sm:gap-x-5">
+                <p
+                  className="row-start-1 self-center text-[10px] font-medium tracking-[0.28em] text-[#0c8dd8] uppercase"
+                  aria-hidden
+                >
+                  {section.number}
+                </p>
+                <div className="row-start-1 flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                  <h2 className="min-w-0 max-w-3xl font-serif text-3xl leading-tight tracking-[-0.035em] sm:text-4xl lg:text-5xl">
                     {section.title}
                   </h2>
-                  {section.subtitle && (
-                    <p className="mt-3 max-w-2xl text-base leading-7 text-[#0d2031]/80 sm:text-lg">
-                      {section.subtitle}
-                    </p>
-                  )}
+                  <div className="shrink-0">{renderSectionCta(section)}</div>
                 </div>
+                {section.subtitle ? (
+                  <p
+                    className="col-start-2 mt-3 max-w-2xl font-serif text-lg leading-snug text-[#0d2031]/85 sm:text-xl sm:leading-snug"
+                  >
+                    {section.subtitle}
+                  </p>
+                ) : null}
+                <div
+                  className={`col-start-2 min-w-0 ${section.subtitle ? "mt-0" : "mt-3"}`}
+                >
+                  {renderSectionContent(section)}
 
-                {eventRequestSources.includes(
-                  section.id as EventRequestSource,
-                ) ? (
-                  <Button
-                    type="button"
-                    variant="link"
-                    size="link"
-                    className="self-start lg:self-end"
-                    onClick={() =>
-                      setRequestSource(section.id as EventRequestSource)
-                    }
-                  >
-                    {section.cta.label}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Button>
-                ) : section.id === "request-a-proposal" ? (
-                  <Button
-                    asChild
-                    variant="link"
-                    size="link"
-                    className="self-start lg:self-end"
-                  >
-                    <Link href={eventProposalRequestPath}>
-                      {section.cta.label}
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </Button>
-                ) : eventUpdatesSubscribeSources.includes(
-                    section.id as EventUpdatesSubscribeSource,
-                  ) ? (
-                  <Button
-                    type="button"
-                    variant="link"
-                    size="link"
-                    className="self-start lg:self-end"
-                    onClick={() =>
-                      setUpdatesSubscribeSource(
-                        section.id as EventUpdatesSubscribeSource,
-                      )
-                    }
-                  >
-                    {section.cta.label}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Button>
-                ) : (
-                  <Button
-                    asChild
-                    variant="link"
-                    size="link"
-                    className="self-start lg:self-end"
-                  >
-                    <Link href={section.cta.href}>
-                      {section.cta.label}
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </Button>
-                )}
+                  <p className={`mt-8 max-w-3xl ${closingTextClass}`}>
+                    {section.closingLine}
+                  </p>
+                </div>
               </div>
-
-              {renderSectionContent(section)}
             </article>
           ))}
         </div>

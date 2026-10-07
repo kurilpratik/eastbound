@@ -1,8 +1,14 @@
 "use client";
 
-import { FormEvent, useState, type ReactNode } from "react";
+import { useActionState, useRef, useState, type ReactNode } from "react";
 
+import EventsExchangeFormError from "@/components/events/EventsExchangeFormError";
+import EventsExchangeHoneypot from "@/components/events/EventsExchangeHoneypot";
 import { Button } from "@/components/ui/Button";
+import {
+  submitEventProposal,
+  type EventsExchangeActionState,
+} from "@/lib/events-exchange/actions";
 
 export const eventProposalRequestPath =
   "/events/events-board/request-a-proposal";
@@ -57,29 +63,14 @@ function ProposalFieldLabel({
 }
 
 export default function EventProposalForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [state, action, isPending] = useActionState<
+    EventsExchangeActionState,
+    FormData
+  >(submitEventProposal, null);
+  const [composeAgain, setComposeAgain] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      source: "request-a-proposal",
-      name: data.get("name"),
-      company: data.get("company"),
-      email: data.get("email"),
-      eventType: data.get("eventType"),
-      destinations: data.get("destinations"),
-      groupSize: data.get("groupSize"),
-      dates: data.get("dates"),
-      datesFlexible: data.get("datesFlexible"),
-      budget: data.get("budget"),
-      interests: data.get("interests"),
-      details: data.get("details"),
-    });
-    setSubmitted(true);
-  };
-
-  if (submitted) {
+  if (Boolean(state?.success) && !composeAgain) {
     return (
       <div
         role="status"
@@ -94,7 +85,10 @@ export default function EventProposalForm() {
         </p>
         <button
           type="button"
-          onClick={() => setSubmitted(false)}
+          onClick={() => {
+            formRef.current?.reset();
+            setComposeAgain(true);
+          }}
           className="text-blue-light text-[0.68rem] tracking-[0.22em] uppercase transition-colors hover:text-white"
         >
           Send another request
@@ -105,10 +99,17 @@ export default function EventProposalForm() {
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="rounded-xl border border-[#d9d9d9] bg-[#f7f8f8] p-5 sm:p-6"
+      ref={formRef}
+      action={action}
+      className="relative rounded-xl border border-[#d9d9d9] bg-[#f7f8f8] p-5 sm:p-6"
+      onSubmit={() => setComposeAgain(false)}
     >
+      <EventsExchangeHoneypot />
       <input type="hidden" name="source" value="request-a-proposal" />
+
+      {state?.error ? (
+        <EventsExchangeFormError message={state.error} className="mb-5" />
+      ) : null}
 
       {/* <p className="mb-5 text-sm leading-6 text-[#0d2031]/70">
         Only name and email are required. You can skip any other field and still
@@ -277,7 +278,9 @@ export default function EventProposalForm() {
       </div>
 
       <div className="mt-5 flex flex-wrap items-center gap-3">
-        <Button type="submit">{formCopy.submitButton}</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? "Sending…" : formCopy.submitButton}
+        </Button>
         <p className="text-xs tracking-[0.18em] text-[#0d2031]/55 uppercase">
           {formCopy.email}
         </p>

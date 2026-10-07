@@ -1,10 +1,16 @@
 "use client";
 
-import { FormEvent, useEffect, useId, useRef, useState } from "react";
+import { useActionState, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
+import EventsExchangeFormError from "@/components/events/EventsExchangeFormError";
+import EventsExchangeHoneypot from "@/components/events/EventsExchangeHoneypot";
 import { Button } from "@/components/ui/Button";
+import {
+  subscribeEventUpdates,
+  type EventsExchangeActionState,
+} from "@/lib/events-exchange/actions";
 
 export const eventUpdatesSubscribeSources = ["event-updates"] as const;
 
@@ -40,9 +46,18 @@ export default function EventUpdatesSubscribeForm({
   const descriptionId = useId();
   const firstFieldRef = useRef<HTMLInputElement>(null);
   const onCloseRef = useRef(onClose);
-  const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [state, action, isPending] = useActionState<
+    EventsExchangeActionState,
+    FormData
+  >(subscribeEventUpdates, null);
+  const [composeAgain, setComposeAgain] = useState(false);
 
-  onCloseRef.current = onClose;
+  const submitted = Boolean(state?.success) && !composeAgain;
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -59,17 +74,6 @@ export default function EventUpdatesSubscribeForm({
       window.removeEventListener("keydown", onKeyDown);
     };
   }, []);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      source: data.get("source"),
-      name: data.get("name"),
-      email: data.get("email"),
-    });
-    setSubmitted(true);
-  };
 
   return createPortal(
     <div className="fixed inset-0 z-[80] flex items-center justify-center p-4">
@@ -126,15 +130,28 @@ export default function EventUpdatesSubscribeForm({
             </p>
             <button
               type="button"
-              onClick={() => setSubmitted(false)}
+              onClick={() => {
+                formRef.current?.reset();
+                setComposeAgain(true);
+              }}
               className="text-blue-light text-[0.68rem] tracking-[0.22em] uppercase transition-colors hover:text-white"
             >
               Subscribe another email
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-6">
+          <form
+            ref={formRef}
+            action={action}
+            className="relative mt-6"
+            onSubmit={() => setComposeAgain(false)}
+          >
+            <EventsExchangeHoneypot />
             <input type="hidden" name="source" value={source} />
+
+            {state?.error ? (
+              <EventsExchangeFormError message={state.error} />
+            ) : null}
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
@@ -172,7 +189,9 @@ export default function EventUpdatesSubscribeForm({
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
-              <Button type="submit">{formCopy.submitButton}</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Sending…" : formCopy.submitButton}
+              </Button>
               <p className="text-xs tracking-[0.18em] text-[#0d2031]/55 uppercase">
                 {formCopy.email}
               </p>

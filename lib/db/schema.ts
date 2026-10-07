@@ -82,3 +82,99 @@ export const enquiries = pgTable(
 export type Enquiry = typeof enquiries.$inferSelect;
 export type NewEnquiry = typeof enquiries.$inferInsert;
 export type EnquirySource = (typeof enquirySourceEnum.enumValues)[number];
+
+/** Events Exchange — venue / experience request modal source. */
+export const eventPortalRequestSourceEnum = pgEnum("event_portal_request_source", [
+  "explore_event_venues",
+  "browse_experiences",
+]);
+
+export const eventPortalRequests = pgTable(
+  "event_portal_requests",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    source: eventPortalRequestSourceEnum("source").notNull(),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    note: text("note").notNull(),
+    profileId: uuid("profile_id").notNull(),
+    portalUserName: text("portal_user_name").notNull(),
+    submitterIpHash: text("submitter_ip_hash"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("event_portal_requests_ip_hash_created_at_idx").on(
+      table.submitterIpHash,
+      table.createdAt,
+    ),
+  ],
+);
+
+export type EventPortalRequest = typeof eventPortalRequests.$inferSelect;
+export type NewEventPortalRequest = typeof eventPortalRequests.$inferInsert;
+export type EventPortalRequestSource =
+  (typeof eventPortalRequestSourceEnum.enumValues)[number];
+
+export const eventProposals = pgTable(
+  "event_proposals",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    name: text("name").notNull(),
+    company: text("company"),
+    email: text("email").notNull(),
+    eventType: text("event_type"),
+    destinations: text("destinations"),
+    groupSize: text("group_size"),
+    dates: text("dates"),
+    datesFlexible: text("dates_flexible"),
+    budget: text("budget"),
+    interests: text("interests"),
+    details: text("details"),
+    profileId: uuid("profile_id").notNull(),
+    portalUserName: text("portal_user_name").notNull(),
+    submitterIpHash: text("submitter_ip_hash"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("event_proposals_ip_hash_created_at_idx").on(
+      table.submitterIpHash,
+      table.createdAt,
+    ),
+  ],
+);
+
+export type EventProposal = typeof eventProposals.$inferSelect;
+export type NewEventProposal = typeof eventProposals.$inferInsert;
+
+export const eventUpdateSubscribers = pgTable(
+  "event_update_subscribers",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    name: text("name").notNull(),
+    email: text("email").notNull().unique(),
+    profileId: uuid("profile_id").notNull(),
+    portalUserName: text("portal_user_name").notNull(),
+    submitterIpHash: text("submitter_ip_hash"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index("event_update_subscribers_ip_hash_created_at_idx").on(
+      table.submitterIpHash,
+      table.createdAt,
+    ),
+  ],
+);
+
+export type EventUpdateSubscriber = typeof eventUpdateSubscribers.$inferSelect;
+export type NewEventUpdateSubscriber =
+  typeof eventUpdateSubscribers.$inferInsert;
