@@ -54,8 +54,33 @@ export const destinationPages: DestinationPage[] = [
     image: india,
   },
   {
-    id: "nepal",
+    id: "uae",
     index: "02",
+    name: "UAE",
+    tagline: "Modern luxury, desert adventures and world-class events.",
+    intro:
+      "The UAE pairs seamlessly with our sub-continent destinations, offering a contemporary counterpoint of five-star city stays, desert experiences and world-class events and incentive infrastructure.",
+    highlights: [
+      { label: "City breaks", detail: "Dubai and Abu Dhabi luxury stays" },
+      {
+        label: "Desert experiences",
+        detail: "Overnight camps, dune adventures, falconry",
+      },
+      {
+        label: "MICE-ready",
+        detail: "Venues and logistics for meetings and incentive groups",
+      },
+      {
+        label: "Stopover programmes",
+        detail: "Designed to connect with sub-continent itineraries",
+      },
+    ],
+    cta: "Plan a UAE Journey",
+    image: uae,
+  },
+  {
+    id: "nepal",
+    index: "03",
     name: "Nepal",
     tagline: "Mountains, monasteries and unforgettable adventures.",
     intro:
@@ -80,7 +105,7 @@ export const destinationPages: DestinationPage[] = [
   },
   {
     id: "bhutan",
-    index: "03",
+    index: "04",
     name: "Bhutan",
     tagline:
       "Authentic Himalayan experiences centred on happiness and sustainability.",
@@ -109,7 +134,7 @@ export const destinationPages: DestinationPage[] = [
   },
   {
     id: "srilanka",
-    index: "04",
+    index: "05",
     name: "Sri Lanka",
     tagline: "Tea country, wildlife, beaches and rich cultural heritage.",
     intro:
@@ -135,31 +160,7 @@ export const destinationPages: DestinationPage[] = [
     cta: "Plan a Sri Lanka Journey",
     image: srilanka,
   },
-  {
-    id: "uae",
-    index: "05",
-    name: "UAE",
-    tagline: "Modern luxury, desert adventures and world-class events.",
-    intro:
-      "The UAE pairs seamlessly with our sub-continent destinations, offering a contemporary counterpoint of five-star city stays, desert experiences and world-class events and incentive infrastructure.",
-    highlights: [
-      { label: "City breaks", detail: "Dubai and Abu Dhabi luxury stays" },
-      {
-        label: "Desert experiences",
-        detail: "Overnight camps, dune adventures, falconry",
-      },
-      {
-        label: "MICE-ready",
-        detail: "Venues and logistics for meetings and incentive groups",
-      },
-      {
-        label: "Stopover programmes",
-        detail: "Designed to connect with sub-continent itineraries",
-      },
-    ],
-    cta: "Plan a UAE Journey",
-    image: uae,
-  },
+
 ];
 
 export type IndiaCity = { name: string; region: string; note: string };

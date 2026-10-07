@@ -109,6 +109,47 @@ export const allDestinations: DestinationDetail[] = [
     ],
   },
   {
+    id: "uae",
+    name: "UAE",
+    about:
+      "The UAE gives Eastbound a contemporary counterpoint to its sub-continent destinations: luxury city breaks in Dubai and Abu Dhabi, desert experiences (overnight camps, dune adventures, falconry), MICE-ready venues and logistics for meetings and incentive groups, and stopover programmes designed to connect with sub-continent itineraries.",
+    image: "/images/destinations/uae/1.jpg",
+    highlightPlaces: [
+      {
+        name: "Dubai",
+        image: "/images/destinations/uae/2.jpg",
+        description:
+          "High-design hotels, waterfront experiences, and a blend of modern glamour and easy luxury.",
+      },
+      {
+        name: "Abu Dhabi",
+        image: "/images/destinations/uae/3.jpg",
+        description:
+          "Cultural landmarks, polished hospitality, and strong options for corporate or private group programmes.",
+      },
+      {
+        name: "Al Marmoom Desert",
+        image: "/images/destinations/uae/4.jpg",
+        description:
+          "Dune safaris, desert dining, overnight camps, and off-road experiences under the stars.",
+      },
+    ],
+    experiences: [
+      "Desert camp overnight",
+      "Private city and waterfront escape",
+      "Falconry and dune adventure",
+      "Luxury stopover itinerary",
+      "MICE and incentive-ready venue access",
+    ],
+    faqs: [
+      {
+        question: "Can a UAE stopover be combined with an India or Nepal trip?",
+        answer:
+          "Yes - Eastbound regularly designs stopover and layover programmes that connect Dubai or Abu Dhabi with sub-continent itineraries.",
+      },
+    ],
+  },
+  {
     id: "nepal",
     name: "Nepal",
     about:
@@ -232,45 +273,5 @@ export const allDestinations: DestinationDetail[] = [
       },
     ],
   },
-  {
-    id: "uae",
-    name: "UAE",
-    about:
-      "The UAE gives Eastbound a contemporary counterpoint to its sub-continent destinations: luxury city breaks in Dubai and Abu Dhabi, desert experiences (overnight camps, dune adventures, falconry), MICE-ready venues and logistics for meetings and incentive groups, and stopover programmes designed to connect with sub-continent itineraries.",
-    image: "/images/destinations/uae/1.jpg",
-    highlightPlaces: [
-      {
-        name: "Dubai",
-        image: "/images/destinations/uae/2.jpg",
-        description:
-          "High-design hotels, waterfront experiences, and a blend of modern glamour and easy luxury.",
-      },
-      {
-        name: "Abu Dhabi",
-        image: "/images/destinations/uae/3.jpg",
-        description:
-          "Cultural landmarks, polished hospitality, and strong options for corporate or private group programmes.",
-      },
-      {
-        name: "Al Marmoom Desert",
-        image: "/images/destinations/uae/4.jpg",
-        description:
-          "Dune safaris, desert dining, overnight camps, and off-road experiences under the stars.",
-      },
-    ],
-    experiences: [
-      "Desert camp overnight",
-      "Private city and waterfront escape",
-      "Falconry and dune adventure",
-      "Luxury stopover itinerary",
-      "MICE and incentive-ready venue access",
-    ],
-    faqs: [
-      {
-        question: "Can a UAE stopover be combined with an India or Nepal trip?",
-        answer:
-          "Yes - Eastbound regularly designs stopover and layover programmes that connect Dubai or Abu Dhabi with sub-continent itineraries.",
-      },
-    ],
-  },
+
 ];

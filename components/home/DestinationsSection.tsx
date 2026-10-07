@@ -15,9 +15,19 @@ const destinations = [
     image: "/images/destinations/india.jpg",
   },
   {
+    name: "UAE",
+    slug: "uae",
+    label: "02",
+    region: "The Gulf",
+    description:
+      "Desert horizons, design-forward cities and deeply rooted Arabian hospitality.",
+    image:
+      "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1400&q=85",
+  },
+  {
     name: "Bhutan",
     slug: "bhutan",
-    label: "02",
+    label: "03",
     region: "The Himalayas",
     description: "A kingdom that measures wealth in happiness.",
     image: "/images/destinations/bhutan.jpg",
@@ -25,7 +35,7 @@ const destinations = [
   {
     name: "Nepal",
     slug: "nepal",
-    label: "03",
+    label: "04",
     region: "The Himalayas",
     description:
       "Ancient temples, mountain trails and warm hospitality beneath the world’s highest peaks.",
@@ -35,21 +45,11 @@ const destinations = [
   {
     name: "Sri Lanka",
     slug: "srilanka",
-    label: "04",
+    label: "05",
     region: "The Indian Ocean",
     description:
       "Tea gardens, timeless temples and golden coastlines make every island journey feel distinct.",
     image: "/images/destinations/srilanka.jpg",
-  },
-  {
-    name: "UAE",
-    slug: "uae",
-    label: "05",
-    region: "The Gulf",
-    description:
-      "Desert horizons, design-forward cities and deeply rooted Arabian hospitality.",
-    image:
-      "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1400&q=85",
   },
 ];
 
