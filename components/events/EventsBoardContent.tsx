@@ -2,15 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { eventProposalRequestPath } from "@/components/events/EventProposalForm";
 import EventRequestForm, {
   eventRequestSources,
   type EventRequestSource,
 } from "@/components/events/EventRequestForm";
+import EventUpdatesSubscribeForm, {
+  eventUpdatesSubscribeSources,
+  type EventUpdatesSubscribeSource,
+} from "@/components/events/EventUpdatesSubscribeForm";
 import { Button } from "@/components/ui/Button";
 import { eventBoardSections } from "@/data/eventsBoard";
+import { site } from "@/data/site";
 
 const navItems = [
   { label: "Explore Event Venues", href: "#explore-event-venues" },
@@ -178,8 +184,6 @@ const renderSectionContent = (section: (typeof sections)[number]) => {
           <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
             {section.closingLine}
           </p>
-
-          {renderFormBlock(section)}
         </>
       );
 
@@ -215,8 +219,6 @@ const renderSectionContent = (section: (typeof sections)[number]) => {
           <p className="mt-8 max-w-3xl text-base leading-7 text-[#0d2031] sm:text-lg">
             {section.closingLine}
           </p>
-
-          {renderFormBlock(section)}
         </>
       );
 
@@ -252,6 +254,22 @@ const renderSectionContent = (section: (typeof sections)[number]) => {
                     ))}
                   </ul>
                 )}
+
+                {detail.download ? (
+                  <div className="mt-5">
+                    <Button asChild size="sm" variant="secondary">
+                      <a
+                        href={detail.download.href}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {detail.download.label}
+                        <Download className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
@@ -313,6 +331,8 @@ const EventsBoardContent = () => {
   const [requestSource, setRequestSource] = useState<EventRequestSource | null>(
     null,
   );
+  const [updatesSubscribeSource, setUpdatesSubscribeSource] =
+    useState<EventUpdatesSubscribeSource | null>(null);
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
@@ -382,7 +402,7 @@ const EventsBoardContent = () => {
                 </Link>
               </Button>
               <Button asChild variant="secondary">
-                <Link href="#request-a-proposal">
+                <Link href={eventProposalRequestPath}>
                   Request a Proposal
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
@@ -456,6 +476,35 @@ const EventsBoardContent = () => {
                     {section.cta.label}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Button>
+                ) : section.id === "request-a-proposal" ? (
+                  <Button
+                    asChild
+                    variant="link"
+                    size="link"
+                    className="self-start lg:self-end"
+                  >
+                    <Link href={eventProposalRequestPath}>
+                      {section.cta.label}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </Button>
+                ) : eventUpdatesSubscribeSources.includes(
+                    section.id as EventUpdatesSubscribeSource,
+                  ) ? (
+                  <Button
+                    type="button"
+                    variant="link"
+                    size="link"
+                    className="self-start lg:self-end"
+                    onClick={() =>
+                      setUpdatesSubscribeSource(
+                        section.id as EventUpdatesSubscribeSource,
+                      )
+                    }
+                  >
+                    {section.cta.label}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Button>
                 ) : (
                   <Button
                     asChild
@@ -475,12 +524,33 @@ const EventsBoardContent = () => {
             </article>
           ))}
         </div>
+
+        <p className="mt-10 border border-[#d9d9d9] bg-[#f8fafb] px-5 py-6 text-sm leading-7 text-[#0d2031]/75 sm:px-8 sm:text-base">
+          Can&apos;t find what you need? Let us know and we&apos;ll point you to
+          the right material.{" "}
+          <span className="text-[#0d2031]">
+            Email{" "}
+            <a
+              href={`mailto:${site.email}`}
+              className="text-[#0c8dd8] underline decoration-[#0c8dd8]/40 underline-offset-2 transition-colors hover:text-[#0d2031] hover:decoration-[#0d2031]/40"
+            >
+              {site.email}
+            </a>
+          </span>
+        </p>
       </div>
 
       {requestSource ? (
         <EventRequestForm
           source={requestSource}
           onClose={() => setRequestSource(null)}
+        />
+      ) : null}
+
+      {updatesSubscribeSource ? (
+        <EventUpdatesSubscribeForm
+          source={updatesSubscribeSource}
+          onClose={() => setUpdatesSubscribeSource(null)}
         />
       ) : null}
     </>

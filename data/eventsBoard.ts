@@ -2,7 +2,13 @@ export type EventBoardDetail = {
   heading: string;
   description?: string;
   list?: string[];
+  download?: {
+    label: string;
+    href: string;
+  };
 };
+
+export const eventsExchangePdfBase = "/pdfs/events-exchange";
 
 export type EventBoardCta = {
   label: string;
@@ -111,13 +117,14 @@ export const eventBoardSections: EventBoardSection[] = [
     id: "request-a-proposal",
     number: "03",
     title: "Request a Proposal",
+    subtitle: "Tell us what you are planning and our team will create a tailored proposal around your group, destination and objectives.",
     intro:
       "Whether you’re planning an incentive for two hundred or a private dinner for twenty, start by telling us what you have in mind. We'll take it from there and come back with a proposal designed around your group, not adapted from a template.",
     details: [
       {
         heading: "How it works",
         list: [
-          "Tell us your plans. Share the basics using the form below.",
+          "Tell us your plans. Share the basics in the proposal request form.",
           "We design. Our team shapes venues, experiences and logistics around your objectives.",
           "You review and refine. We adjust until every detail feels right.",
         ],
@@ -126,53 +133,16 @@ export const eventBoardSections: EventBoardSection[] = [
     closingLine:
       "Tell us what you're planning and we’ll build a proposal around your priorities, destination and budget.",
     cta: {
-      label: "Send My Request",
-      href: "#request-a-proposal",
+      label: "Request a Proposal",
+      href: "/events/events-board/request-a-proposal",
       responseTime: "8 hours",
-    },
-    form: {
-      title: "Request a proposal",
-      description:
-        "Tell us about your event and we’ll design a response around it.",
-      fields: [
-        { label: "Name", type: "text", required: true },
-        { label: "Company or organisation", type: "text", required: false },
-        { label: "Email address", type: "email", required: true },
-        {
-          label: "Type of event",
-          type: "select",
-          required: true,
-        },
-        {
-          label: 'Preferred destination(s), or "Open to suggestions"',
-          type: "text",
-          required: false,
-        },
-        { label: "Approximate group size", type: "text", required: false },
-        { label: "Preferred dates or season", type: "text", required: false },
-        { label: "Are your dates flexible?", type: "select", required: false },
-        { label: "Estimated budget (optional)", type: "text", required: false },
-        {
-          label: "Experiences or venues that interest you (optional)",
-          type: "textarea",
-          required: false,
-        },
-        {
-          label: "Tell us more about what you're planning",
-          type: "textarea",
-          required: true,
-        },
-      ],
-      submitButton: "Send My Request",
-      confirmation:
-        "Thank you. We’ve received your request and a member of our team will be in touch within 8-hours.",
-      email: "info@eastboundgroup.com",
     },
   },
   {
     id: "event-updates",
     number: "04",
     title: "Event Updates",
+    subtitle: "The latest destinations, venues, openings, experiences and ideas from the Eastbound team.",
     intro:
       "A look at what's new and what we're excited about across the region: fresh venues, new experiences, and ideas from the team who plan and deliver these events on the ground.",
     details: [
@@ -194,21 +164,12 @@ export const eventBoardSections: EventBoardSection[] = [
       href: "#event-updates",
       responseTime: "Newsletter",
     },
-    form: {
-      title: "Subscribe for updates",
-      description:
-        "Enter your email and we’ll add you to our database and send curated event newsletters.",
-      fields: [{ label: "Email", type: "email", required: true }],
-      submitButton: "Subscribe for Updates",
-      confirmation:
-        "Thank you for subscribing. We’ll share new updates as they’re published.",
-      email: "info@eastboundgroup.com",
-    },
   },
   {
     id: "download-resources",
     number: "05",
     title: "Download Resources",
+    subtitle: "Access useful destination guides, venue information, event resources and planning material.",
     intro:
       "Everything you need to start planning, in one place. Download what's useful and share it with your team.",
     details: [
@@ -225,8 +186,11 @@ export const eventBoardSections: EventBoardSection[] = [
           "Group logistics: accommodation depth, ground transport and permits or entry requirements",
           "Cultural notes and responsible travel considerations",
           "Covers: India · UAE · Sri Lanka · Nepal · Bhutan",
-          "Download now — see attached _Destination_Guide.pdf",
         ],
+        download: {
+          label: "Download destination guides",
+          href: `${eventsExchangePdfBase}/01_Destination_Guides.pdf`,
+        },
       },
       {
         heading: "Venue information",
@@ -239,8 +203,11 @@ export const eventBoardSections: EventBoardSection[] = [
           "Capacity guidance by venue type and format",
           "What each setting suits best, and what to weigh up (seasonality, access, exclusivity)",
           "Questions to ask when shortlisting a venue",
-          "Download now — see attached _Venue_Information.pdf",
         ],
+        download: {
+          label: "Download venue information",
+          href: `${eventsExchangePdfBase}/02_Venue_Information.pdf`,
+        },
       },
       {
         heading: "Event planning checklist",
@@ -255,8 +222,11 @@ export const eventBoardSections: EventBoardSection[] = [
           "Compliance and logistics: visas, permits, insurance and local regulations",
           "Guest experience: communications, welcome, on-ground support and contingency planning",
           "Final arrival: run sheets, briefings and post-event follow-up",
-          "Download now — see attached _Event_Planning_Checklist.pdf",
         ],
+        download: {
+          label: "Download event planning checklist",
+          href: `${eventsExchangePdfBase}/03_Event_Planning_Checklist.pdf`,
+        },
       },
       {
         heading: "Sample itineraries",
@@ -269,8 +239,11 @@ export const eventBoardSections: EventBoardSection[] = [
           "Conference: working sessions paired with curated networking, dining and a cultural evening",
           "Celebration: a private, personalised programme built around a milestone, anniversary or family gathering",
           "Day-by-day flow, with notes on what can be adapted for group size, season and budget",
-          "Download now — see attached _Sample_Itineraries.pdf",
         ],
+        download: {
+          label: "Download sample itineraries",
+          href: `${eventsExchangePdfBase}/04_Sample_Itineraries.pdf`,
+        },
       },
       {
         heading: "Seasonality guide",
@@ -290,8 +263,11 @@ export const eventBoardSections: EventBoardSection[] = [
           "Sri Lanka — West and south coasts are best from December to March; the east coast from April to September.",
           "Nepal — October-November and March-May are the clearest and most popular windows.",
           "Bhutan — March-May and September-November are the sweet spots.",
-          "Download now — see attached _Seasonality_Guide.pdf",
         ],
+        download: {
+          label: "Download seasonality guide",
+          href: `${eventsExchangePdfBase}/05_Seasonality_Guide.pdf`,
+        },
       },
     ],
     closingLine:
