@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const destinations = [
   {
@@ -55,7 +55,14 @@ const destinations = [
 
 const DestinationsSection = () => {
   const router = useRouter();
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+      setActiveIndex(1);
+    }
+  }, []);
+
   const activeDestination = destinations[activeIndex];
 
   return (
