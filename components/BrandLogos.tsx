@@ -13,7 +13,7 @@ const BrandLogos = () => {
           {loop.map((brand, i) => (
             <div
               key={`${brand.name}-${i}`}
-              className="flex h-12 w-28 items-center justify-center md:h-16 md:w-36"
+              className="flex h-12 w-28 items-center justify-center md:h-24 md:w-48"
             >
               <img
                 src={brand.image}
