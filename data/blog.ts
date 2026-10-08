@@ -11,36 +11,36 @@ export type Post = {
 
 export const posts: Post[] = [
   {
-    id: "rajasthan-palace-hotels",
-    category: "India",
-    title: "The last of the great palace hotels",
+    id: "september-2026",
+    category: "Eastnews",
+    title: "September 2026",
     excerpt:
-      "Where the maharajas once entertained emperors, a new generation of hoteliers is quietly rewriting the rules of hospitality.",
+      "From Eye to Eye Eastbound - Narendra Bhawan, Bikaner - Kites, Chai & Calligraphy and more",
+    date: "September 2026",
+    readTime: "20 minutes",
+    image: "/images/newsletters/September2026.png",
+    link: "https://eastboundgroup.aflip.in/63656de1f8.html#page/1",
+  },
+  {
+    id: "july-2026",
+    category: "Eastnews",
+    title: "July 2026",
+    excerpt:
+      "From Anopura Jaipur - The Living Fort of India - Kaav Safari Lodge, Kabini and more",
     date: "July 2026",
-    readTime: "8 min read",
-    image: "/images/newsletters/n1.jpg",
-    link: "https://eastboundgroup.aflip.in/6e929abfd8.html",
+    readTime: "20 minutes",
+    image: "/images/newsletters/July2026.png",
+    link: "https://eastboundgroup.aflip.in/3ee6e0f3d4.html",
   },
   {
-    id: "bhutan-slow-travel",
-    category: "Bhutan",
-    title: "A slow week in the Paro Valley",
+    id: "may-2026",
+    category: "Eastnews",
+    title: "May, 2026",
     excerpt:
-      "Notes on tea, silence and the peculiar arithmetic of Gross National Happiness — from a fortnight spent walking in Bhutan.",
-    date: "June 2026",
-    readTime: "6 min read",
-    image: "/images/newsletters/n2.jpg",
-    link: "https://eastboundgroup.aflip.in/ec39dafae7.html",
-  },
-  {
-    id: "maldives-private-atolls",
-    category: "Maldives",
-    title: "The atolls only a charter will show you",
-    excerpt:
-      "Beyond the well-known resorts lies a quieter Maldives — reached only by private yacht, and worth every nautical mile.",
+      "From Ran Baas palace, Patiala - Chambal River Safari - Ganga Dussehra and more",
     date: "May 2026",
-    readTime: "5 min read",
-    image: "/images/newsletters/n3.jpg",
-    link: "https://eastboundgroup.aflip.in/dfbd49f502.html",
+    readTime: "20 minutes",
+    image: "/images/newsletters/May2026.png",
+    link: "https://eastboundgroup.aflip.in/6e929abfd8.html#page/1",
   },
 ];

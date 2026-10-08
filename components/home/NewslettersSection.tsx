@@ -22,14 +22,8 @@ export function NewslettersSection() {
             href="/newsletters"
             className={cn(buttonVariants({ variant: "link", size: "link" }))}
           >
-            View all newsletters <span className="btn-link-icon">→</span>
+            View all <span className="btn-link-icon">→</span>
           </Link>
-          {/* <a
-            href="/newsletters"
-            className="text-primary/80 hover:text-accent border-border inline-flex items-center gap-2 border-b pb-1 text-[0.72rem] tracking-[0.28em] uppercase transition-colors"
-          >
-            View all newsletters →
-          </a> */}
         </Reveal>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -47,14 +41,14 @@ export function NewslettersSection() {
                 as="article"
                 className="card-frame h-full cursor-pointer"
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="overflow-hidden">
                   <Image
                     src={p.image}
                     alt={p.title}
-                    className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
+                    className="h-auto w-full transition-transform duration-[1400ms] group-hover:scale-105"
                     loading="lazy"
-                    width={600}
-                    height={400}
+                    width={586}
+                    height={740}
                   />
                 </div>
                 <div className="px-2 pt-6 pb-8">
@@ -83,7 +77,7 @@ export function NewslettersSection() {
                       buttonVariants({ variant: "link", size: "link" }),
                     )}
                   >
-                    Read this newsletter{" "}
+                    Read this{" "}
                     <span className="btn-link-icon">
                       <ArrowUpRight className="h-3 w-3" />
                     </span>
